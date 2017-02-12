@@ -1,0 +1,2 @@
+json.extract! document, :id, :documentCode, :senderEmail_id, :receiverEmal_id, :creatorEmail_id, :subject, :date, :content, :tags, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id, :created_at, :updated_at
+json.url document_url(document, format: :json)

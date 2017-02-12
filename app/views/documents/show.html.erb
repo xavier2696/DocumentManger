@@ -1,0 +1,69 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Documentcode:</strong>
+  <%= @document.documentCode %>
+</p>
+
+<p>
+  <strong>Senderemail:</strong>
+  <%= @document.senderEmail %>
+</p>
+
+<p>
+  <strong>Receiveremal:</strong>
+  <%= @document.receiverEmal %>
+</p>
+
+<p>
+  <strong>Creatoremail:</strong>
+  <%= @document.creatorEmail %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @document.subject %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @document.date %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @document.content %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @document.tags %>
+</p>
+
+<p>
+  <strong>Conversationid:</strong>
+  <%= @document.conversationId %>
+</p>
+
+<p>
+  <strong>Issenderprivate:</strong>
+  <%= @document.isSenderPrivate %>
+</p>
+
+<p>
+  <strong>Senderstatus:</strong>
+  <%= @document.senderStatus %>
+</p>
+
+<p>
+  <strong>Isreceiverprivate:</strong>
+  <%= @document.isReceiverPrivate %>
+</p>
+
+<p>
+  <strong>Receiverstatus:</strong>
+  <%= @document.receiverStatus %>
+</p>
+
+<%= link_to 'Edit', edit_document_path(@document) %> |
+<%= link_to 'Back', documents_path %>

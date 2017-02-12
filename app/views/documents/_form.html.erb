@@ -1,0 +1,82 @@
+<%= form_for(document) do |f| %>
+  <% if document.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
+
+      <ul>
+      <% document.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :documentCode %>
+    <%= f.text_field :documentCode %>
+  </div>
+
+  <div class="field">
+    <%= f.label :senderEmail_id %>
+    <%= f.text_field :senderEmail_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :receiverEmal_id %>
+    <%= f.text_field :receiverEmal_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :creatorEmail_id %>
+    <%= f.text_field :creatorEmail_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :subject %>
+    <%= f.text_field :subject %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :tags %>
+    <%= f.text_field :tags %>
+  </div>
+
+  <div class="field">
+    <%= f.label :conversationId %>
+    <%= f.number_field :conversationId %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isSenderPrivate %>
+    <%= f.text_field :isSenderPrivate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :senderStatus_id %>
+    <%= f.text_field :senderStatus_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isReceiverPrivate %>
+    <%= f.text_field :isReceiverPrivate %>
+  </div>
+
+  <div class="field">
+    <%= f.label :receiverStatus_id %>
+    <%= f.text_field :receiverStatus_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
