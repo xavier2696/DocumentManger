@@ -1,11 +1,11 @@
-class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+class Users::RegistrationsController < Devise::RegistrationsController
+    before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   # GET /users
   # GET /users.json
-  def index
-    @users = User.all
-  end
+    def index
+        @users = User.all
+    end
 
   # GET /users/1
   # GET /users/1.json
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user.department_id.to_i
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.html { redirect_to :controller => "/welcome", :action => "index", notice: 'User was successfully created.Please Sign In' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -72,4 +72,6 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:email, :password, :username, :department_id, :position, :isGeneralAdmin, :isDepartmentAdmin)
     end
+    
+    
 end
