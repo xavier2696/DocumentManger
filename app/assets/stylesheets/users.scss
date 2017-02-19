@@ -1,3 +1,132 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "materialize";
+.logo_login {
+    height: 200px;
+    width: 200px;
+    border-radius: 6px;
+    padding: 35px;
+    border-radius: 70px;
+}
+
+.login-icons {
+    color: #EA2E49;
+}
+
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea {
+    border-bottom: 1px solid #EA2E49;
+}
+
+.input-field label {
+    color: #EA2E49;
+}
+
+input:not([type]),
+input[type=text],
+input[type=password],
+input[type=email],
+input[type=url],
+input[type=time],
+input[type=date],
+input[type=datetime],
+input[type=datetime-local],
+input[type=tel],
+input[type=number],
+input[type=search],
+textarea.materialize-textarea {
+    border-bottom: 1px solid #EA2E49;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:focus:not([readonly]),
+input[type=password]:focus:not([readonly]),
+input[type=email]:focus:not([readonly]),
+input[type=url]:focus:not([readonly]),
+input[type=time]:focus:not([readonly]),
+input[type=date]:focus:not([readonly]),
+input[type=datetime]:focus:not([readonly]),
+input[type=datetime-local]:focus:not([readonly]),
+input[type=tel]:focus:not([readonly]),
+input[type=number]:focus:not([readonly]),
+input[type=search]:focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+    border-bottom: 1px solid #ea2e59;
+    box-shadow: 0 1px 0 0 #ea2e59;
+}
+
+.login-container {
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    -webkit-box-shadow: -1px 4px 10px -5px #3eaac0;
+    -moz-box-shadow: -1px 4px 10px -5px #3eaac0;
+    box-shadow: -1px 4px 10px -5px #3eaac0;
+    background-color: #fbfdfc;
+    opacity: 0.83;
+    height: 90%;
+    overflow-y: auto;
+}
+
+.form-container {
+    padding: 50px;
+}
+
+.input-field .prefix.active {
+    color: #ea2e59;
+}
+
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:focus:not([readonly]) + label,
+input[type=password]:focus:not([readonly]) + label,
+input[type=email]:focus:not([readonly]) + label,
+input[type=url]:focus:not([readonly]) + label,
+input[type=time]:focus:not([readonly]) + label,
+input[type=date]:focus:not([readonly]) + label,
+input[type=datetime]:focus:not([readonly]) + label,
+input[type=datetime-local]:focus:not([readonly]) + label,
+input[type=tel]:focus:not([readonly]) + label,
+input[type=number]:focus:not([readonly]) + label,
+input[type=search]:focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+    color: #ea2e59;
+}
+
+.login-container .logo-container {
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-header {
+    height: 50px;
+    background-color: #77c4d3;
+    -moz-box-shadow: 1px 10px 18px -3px rgba(62, 170, 192, 0.85);
+    -webkit-box-shadow: -5px 12px 18px -12px rgba(62, 170, 192, 0.85);
+    -moz-box-shadow: -5px 12px 18px -12px rgba(62, 170, 192, 0.85);
+    box-shadow: -5px 12px 18px -12px rgba(62, 170, 192, 0.85);
+}
+
+.login-header .login-title {
+    color: white;
+    font-size: 18px;
+    text-align: -webkit-center;
+    padding-top: 20px;
+}
+
+.actions .btn{
+    background-color: #77c4d3;
+}
