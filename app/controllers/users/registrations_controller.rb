@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
     before_action :set_user, only: [:show, :edit, :update, :destroy]
-
+    
   # GET /users
   # GET /users.json
     def index
@@ -72,6 +72,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     def user_params
       params.require(:user).permit(:email, :password, :username, :department_id, :position, :isGeneralAdmin, :isDepartmentAdmin)
     end
-    
-    
+ 
+
 end

@@ -20,7 +20,49 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    background-image: image-url("background.png");
+    background-image: image-url("background2.png");
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+nav a:visited {
+    color: white !important;
+}
+
+a:hover {
+    background-color: transparent;
+    background-size: cover;
+}
+
+nav .brand-logo {
+    height: 100%;
+}
+
+nav .brand-logo .logo-container-nv {
+    height: 100%;
+    width: 100px;
+    opacity: 0.7;
+}
+
+nav .brand-logo .logo-container-nv img.logo_navbar {
+    height: 100%;
+}
+
+nav .nav-wrapper {
+    background-color: #333745;
+}
+
+#nav-mobile {
+    height: 100%;
+}
+
+#nav-mobile li {
+    height: 100%;
+}
+
+nav #nav-mobile a {
+    font-family: 'Mada', sans-serif;
+    font-size: 17px;
+    height: 100%;
+    padding-top: 20px;
 }

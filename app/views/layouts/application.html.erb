@@ -7,12 +7,37 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%== stylesheet_link_tag 'https://fonts.googleapis.com/icon?family=Material+Icons' %>
+    <%== stylesheet_link_tag 'https://fonts.googleapis.com/css?family=Mada'%>
 
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
+   <% if user_signed_in? %>
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+          <div class="logo-container-nv"> 
+            <%= image_tag("logo2.png",:class => "logo_navbar" )%>
+          </div>
+         </a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <% if current_user.isGeneralAdmin? %>
+              <li><%= link_to "Departamentos", departments_path %></li>
+              <li><%= link_to "Estados", statuses_path %></li>
+              <li><%= link_to "Documentos", documents_path %></li>
+          <% elsif current_user.isDepartmentAdmin? %>
+              <li><%= link_to "Departamentos", departments_path %></li>
+              <li><%= link_to "Estados", statuses_path %></li>
+              <li><%= link_to "Documentos", documents_path %></li>
+          <% else %>
+              
+          <% end %>
+         
+          <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+          
+        </ul>
+      </div>
+    </nav>
     <% end %>
     <%= yield %>
   </body>

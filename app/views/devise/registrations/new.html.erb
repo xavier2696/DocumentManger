@@ -24,8 +24,13 @@
   
   <div class="input-field col s3">
   <i class="material-icons login-icons prefix">business</i>
+   
     <%= f.label :department_id, "Departamento"%><br />
-    <%= f.text_field :department_id, autofocus: true %>
+    <br />
+    <br />
+    <%= f.select :department_id, @departments.map{|d| [d.departmentName,d.id]}
+    %>
+    <br>  
   </div>
   
   <div class="input-field col s3">
