@@ -26,14 +26,14 @@
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">contact_mail</i>
         <%= f.label :sender_id,"Remitente"%><br>
-        <%= f.select :sender_id, @usersSender.map{|u|[u.username,u.id]}
+        <%= f.select :sender_id, @usersSender.map{|u|[u.username+"-"+u.email,u.id]}
          %>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentSender">Departamento</label>
         <br>
-        <input id="departmentSender" type="text" class="validate" >
+        <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
       </div>
     </div>
     <div class="contact-info">
@@ -41,13 +41,13 @@
         <i class="material-icons login-icons prefix">contact_mail</i>
         <%= f.label :receiver_id, "Destinatario" %>
         <br>
-        <%= f.select :receiver_id, @usersReceiver.map{|u|[u.username,u.id]}, class: "receiver-select"
+        <%= f.select :receiver_id, @usersReceiver.map{|u| [u.username+"-"+u.email,u.id]}, class: "receiver-select"
          %>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentReceiver">Departamento</label><br>
-        <%= select_tag "", options_for_select(@usersReceiver.map{|u|[u.departmentName,u.department_id]}), class: "receiver-select"
+        <%= select_tag "", options_for_select(@departmentReceiver), class: "receiver-select"
          %>
       </div>
     </div>
@@ -55,12 +55,14 @@
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">face</i>
         <%= f.label :creator_id, "Creador"%>
-        <%= f.text_field :creator_id %>
+        <br>
+        <%= f.select :creator_id, [[current_user.username+"-"+current_user.email,current_user.id]],{},{:disabled => true}%>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
-        <input id="departmentCreator" type="text" class="validate">
         <label for="departmentCreator">Departamento</label>
+       
+        <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
       </div>
     </div>
   </div>
@@ -102,7 +104,9 @@
     <%= f.text_field :receiverStatus_id %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag( :class => "waves-effect waves-light btn") do %>
+      Enviar Documento <i class="material-icons right">send</i>
+    <% end %>
   </div>
 <% end %>
 <script type="text/javascript">

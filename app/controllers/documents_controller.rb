@@ -5,6 +5,7 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+
   end
 
   # GET /documents/1
@@ -17,6 +18,16 @@ class DocumentsController < ApplicationController
     @document = Document.new
     @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
     @usersSender = User.where(department_id: current_user.department_id)
+    @currentUserDepartment = Department.find(current_user.department_id)
+    @departmentReceiver = []
+    addedIds = []
+    @usersReceiver.map{|u|
+       if !addedIds.include?(u.department_id)
+         addedIds.push(u.department_id)
+         @departmentReceiver.push([u.departmentName,u.department_id])
+       end
+    }
+
   end
 
   # GET /documents/1/edit
@@ -34,6 +45,9 @@ class DocumentsController < ApplicationController
       else
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
+        @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
+        @usersSender = User.where(department_id: current_user.department_id)
+        @currentUserDepartment = Department.find(current_user.department_id)
       end
     end
   end
@@ -63,13 +77,13 @@ class DocumentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_document
-      @document = Document.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_document
+    @document = Document.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def document_params
-      params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :tags, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def document_params
+    params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :tags, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id)
+  end
 end
