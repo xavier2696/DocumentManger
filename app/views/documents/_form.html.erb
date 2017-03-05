@@ -2,81 +2,107 @@
   <% if document.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(document.errors.count, "error") %> prohibited this document from being saved:</h2>
-
       <ul>
-      <% document.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
+        <% document.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :documentCode %>
-    <%= f.text_field :documentCode %>
+  <div class="header">
+    <div class="doc-metadata">
+      <div class="input-field doc-code">
+        <i class="material-icons login-icons prefix">description</i>
+        <%= f.label :documentCode, "Código de Documento"%>
+        <%= f.text_field :documentCode %>
+      </div>
+      <div class="input-field data-field">
+        <i class="material-icons login-icons prefix">date_range</i>
+        <%= f.label :date, "Fecha"%>
+        <%= f.text_field :date, class: "datepicker"%>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="input-field contact-input">
+        <i class="material-icons login-icons prefix">contact_mail</i>
+        <%= f.label :sender_id,"Remitente"%>
+        <%= f.text_field :sender_id %>
+      </div>
+      <div class="input-field department-input">
+        <i class="material-icons login-icons prefix">business</i>
+        <input id="departmentSender" type="text" class="validate">
+        <label for="departmentSender">Departamento</label>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="input-field contact-input">
+        <i class="material-icons login-icons prefix">contact_mail</i>
+        <%= f.label :receiver_id, "Destinatario" %>
+        <%= f.text_field :receiver_id %>
+      </div>
+      <div class="input-field department-input">
+        <i class="material-icons login-icons prefix">business</i>
+        <input id="departmentReceiver" type="text" class="validate">
+        <label for="departmentReceiver">Departamento</label>
+      </div>
+    </div>
+    <div class="contact-info">
+      <div class="input-field contact-input">
+        <i class="material-icons login-icons prefix">face</i>
+        <%= f.label :creator_id, "Creador"%>
+        <%= f.text_field :creator_id %>
+      </div>
+      <div class="input-field department-input">
+        <i class="material-icons login-icons prefix">business</i>
+        <input id="departmentCreator" type="text" class="validate">
+        <label for="departmentCreator">Departamento</label>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :sender_id %>
-    <%= f.text_field :sender_id %>
+  <div class="header">
+    <div class="input-field">
+      <i class="material-icons login-icons prefix">subject</i>
+      <%= f.label :subject, "Asunto" %>
+      <%= f.text_field :subject %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :receiver_id %>
-    <%= f.text_field :receiver_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :creator_id %>
-    <%= f.text_field :creator_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :subject %>
-    <%= f.text_field :subject %>
-  </div>
-
-  <div class="field">
-    <%= f.label :date %>
-    <%= f.date_select :date %>
-  </div>
-
-  <div class="field">
+  <div class="input-field">
+    <i class="material-icons login-icons prefix">drafts</i>
     <%= f.label :content %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content,class: "materialize-textarea" %>
   </div>
-
-  <div class="field">
+  <div class="input-field">
+    <i class="material-icons login-icons prefix">label</i>
     <%= f.label :tags %>
-    <%= f.text_field :tags %>
+    <%= f.text_field :tags, class: "tag-input" %>
   </div>
 
-  <div class="field">
+  <div class="tag-elements">
+    </div>
+  <div class="input-field">
     <%= f.label :conversationId %>
     <%= f.number_field :conversationId %>
   </div>
-
-  <div class="field">
+  <div class="input-field">
     <%= f.label :isSenderPrivate %>
     <%= f.check_box :isSenderPrivate %>
   </div>
-
-  <div class="field">
+  <div class="input-field">
     <%= f.label :senderStatus_id %>
     <%= f.text_field :senderStatus_id %>
   </div>
-
-  <div class="field">
+  <div class="input-field">
     <%= f.label :isReceiverPrivate %>
     <%= f.check_box :isReceiverPrivate %>
   </div>
-
-  <div class="field">
+  <div class="input-field">
     <%= f.label :receiverStatus_id %>
     <%= f.text_field :receiverStatus_id %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+<script type="text/javascript">
+	tagEvent();
+</script>

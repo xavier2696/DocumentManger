@@ -30,7 +30,8 @@
               <li><%= link_to "Estados", statuses_path %></li>
               <li><%= link_to "Documentos", documents_path %></li>
           <% else %>
-              
+              <li><%= link_to "Documentos", documents_path %></li>
+              <li><%= link_to "Crear Documento", new_document_path %></li>
           <% end %>
          
           <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>

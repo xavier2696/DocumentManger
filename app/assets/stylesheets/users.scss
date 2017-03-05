@@ -9,6 +9,18 @@
     padding: 35px;
     border-radius: 70px;
 }
+div::-webkit-scrollbar {
+    width: 1em;
+}
+ 
+div::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+ 
+div::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}
 
 .login-icons {
     color: #EA2E49;
@@ -139,4 +151,10 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 
 .select-wrapper input.select-dropdown {
     border-bottom: 1px solid #EA2E49;
+}
+.links-devise {
+    margin-left: 50px;
+}
+.links-device a:hover {
+    color: black !important;
 }
