@@ -15,6 +15,8 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
+    @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
+    @usersSender = User.where(department_id: current_user.department_id)
   end
 
   # GET /documents/1/edit

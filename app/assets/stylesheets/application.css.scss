@@ -16,21 +16,20 @@
 
 html,
 body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
     background-image: image-url("background2.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 body::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
 }
- 
+
 body::-webkit-scrollbar-thumb {
-  background-color: darkgrey;
-  outline: 1px solid slategrey;
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
 }
 
 nav a:visited {
@@ -73,4 +72,16 @@ nav #nav-mobile a {
     font-size: 17px;
     height: 100%;
     padding-top: 20px;
+}
+
+.page-container {
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+}
+.page-container .page-wrapper {
+    height: 95%;
+    overflow-y: auto;
 }

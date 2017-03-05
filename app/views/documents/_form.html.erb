@@ -25,25 +25,30 @@
     <div class="contact-info">
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">contact_mail</i>
-        <%= f.label :sender_id,"Remitente"%>
-        <%= f.text_field :sender_id %>
+        <%= f.label :sender_id,"Remitente"%><br>
+        <%= f.select :sender_id, @usersSender.map{|u|[u.username,u.id]}
+         %>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
-        <input id="departmentSender" type="text" class="validate">
         <label for="departmentSender">Departamento</label>
+        <br>
+        <input id="departmentSender" type="text" class="validate" >
       </div>
     </div>
     <div class="contact-info">
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">contact_mail</i>
         <%= f.label :receiver_id, "Destinatario" %>
-        <%= f.text_field :receiver_id %>
+        <br>
+        <%= f.select :receiver_id, @usersReceiver.map{|u|[u.username,u.id]}, class: "receiver-select"
+         %>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
-        <input id="departmentReceiver" type="text" class="validate">
-        <label for="departmentReceiver">Departamento</label>
+        <label for="departmentReceiver">Departamento</label><br>
+        <%= select_tag "", options_for_select(@usersReceiver.map{|u|[u.departmentName,u.department_id]}), class: "receiver-select"
+         %>
       </div>
     </div>
     <div class="contact-info">
@@ -66,22 +71,19 @@
       <%= f.text_field :subject %>
     </div>
   </div>
-  <div class="input-field">
-    <i class="material-icons login-icons prefix">drafts</i>
-    <%= f.label :content %>
-    <%= f.text_area :content,class: "materialize-textarea" %>
-  </div>
-  <div class="input-field">
-    <i class="material-icons login-icons prefix">label</i>
-    <%= f.label :tags %>
-    <%= f.text_field :tags, class: "tag-input" %>
-  </div>
-
-  <div class="tag-elements">
+  <div class="content-container">
+    <div class="input-field content-wrapper">
+      <i class="material-icons login-icons prefix">drafts</i>
+      <%= f.label :content %>
+      <%= f.text_area :content,class: "materialize-textarea document_content" %>
     </div>
-  <div class="input-field">
-    <%= f.label :conversationId %>
-    <%= f.number_field :conversationId %>
+    <div class="input-field">
+      <i class="material-icons login-icons prefix">label</i>
+      <%= f.label :tags %>
+      <%= f.text_field :tags, class: "tag-input" %>
+    </div>
+    <div class="tag-elements">
+    </div>
   </div>
   <div class="input-field">
     <%= f.label :isSenderPrivate %>
@@ -104,5 +106,5 @@
   </div>
 <% end %>
 <script type="text/javascript">
-	tagEvent();
+  tagEvent();
 </script>
