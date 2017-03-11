@@ -41,13 +41,14 @@
         <i class="material-icons login-icons prefix">contact_mail</i>
         <%= f.label :receiver_id, "Destinatario" %>
         <br>
-        <%= f.select :receiver_id, @usersReceiver.map{|u| [u.username+"-"+u.email,u.id]}, class: "receiver-select"
+        <%= f.select :receiver_id, @usersReceiver.map{|u| [u.username+"-"+u.email,u.id]}, {},{:onchange=>"onChangeReceiverUser($(this).val())",
+        :class => "receiver-select"}
          %>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentReceiver">Departamento</label><br>
-        <%= select_tag "", options_for_select(@departmentReceiver), class: "receiver-select"
+        <%= select_tag "", options_for_select(@departmentReceiver), class: "receiver-department-select", :onchange=>"onChangeReceiverDepartment($(this).val())"
          %>
       </div>
     </div>
@@ -61,7 +62,7 @@
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentCreator">Departamento</label>
-       
+        <br>
         <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
       </div>
     </div>
@@ -78,6 +79,17 @@
       <i class="material-icons login-icons prefix">drafts</i>
       <%= f.label :content %>
       <%= f.text_area :content,class: "materialize-textarea document_content" %>
+    </div>
+    <div class="file-field input-field">
+      <div class="actions">
+        <div class="waves-effect waves-light btn">
+          <i class="material-icons">attach_file</i>
+          <input type="file" multiple>
+        </div>
+      </div>
+      <div class="file-path-wrapper">
+        <input class="file-path validate" type="text">
+      </div>
     </div>
     <div class="input-field">
       <i class="material-icons login-icons prefix">label</i>

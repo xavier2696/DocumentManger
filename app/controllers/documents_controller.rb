@@ -16,18 +16,20 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
-    @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
+    @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"")
+    logger.debug @usersReceiver
     @usersSender = User.where(department_id: current_user.department_id)
     @currentUserDepartment = Department.find(current_user.department_id)
     @departmentReceiver = []
     addedIds = []
     @usersReceiver.map{|u|
-       if !addedIds.include?(u.department_id)
-         addedIds.push(u.department_id)
-         @departmentReceiver.push([u.departmentName,u.department_id])
-       end
+      if !addedIds.include?(u.department_id)
+        addedIds.push(u.department_id)
+        @departmentReceiver.push([u.departmentName,u.department_id])
+      end
     }
-
+    gon.departmentReceiver = @departmentReceiver
+    gon.usersReceiver = @usersReceiver
   end
 
   # GET /documents/1/edit
@@ -48,6 +50,14 @@ class DocumentsController < ApplicationController
         @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
         @usersSender = User.where(department_id: current_user.department_id)
         @currentUserDepartment = Department.find(current_user.department_id)
+        @departmentReceiver = []
+        addedIds = []
+        @usersReceiver.map{|u|
+          if !addedIds.include?(u.department_id)
+            addedIds.push(u.department_id)
+            @departmentReceiver.push([u.departmentName,u.department_id])
+          end
+        }
       end
     end
   end
