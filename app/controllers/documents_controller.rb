@@ -11,6 +11,24 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @statusesSender = Status.where(department_id: @document.sender.department_id)
+    @statusesReceiver = Status.where(department_id: @document.receiver.department_id)
+    @newSenderStatus = @document.senderStatus
+    @newReceiverStatus = @document.receiverStatus
+    @canUpdateSenderStatus = false
+    if current_user.department_id == @document.sender.department_id and current_user.isDepartmentAdmin #department admin can change status
+      @canUpdateSenderStatus = true
+    end
+    if current_user.email == @document.sender.email #sender can change status
+      @canUpdateSenderStatus = true
+    end
+    @canUpdateReceiverStatus = false
+    if current_user.department_id == @document.receiver.department_id and current_user.isDepartmentAdmin #department admin can change status
+      @canUpdateReceiverStatus = true
+    end
+    if current_user.email == @document.receiver.email #receiver can change status
+      @canUpdateReceiverStatus = true
+    end
   end
 
   # GET /documents/new
