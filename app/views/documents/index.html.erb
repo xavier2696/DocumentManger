@@ -26,18 +26,18 @@
     <% @documents.each do |document| %>
       <tr>
         <td><%= document.documentCode %></td>
-        <td><%= document.senderEmail %></td>
-        <td><%= document.receiverEmal %></td>
-        <td><%= document.creatorEmail %></td>
+        <td><%= document.sender.email %></td>
+        <td><%= document.receiver.email %></td>
+        <td><%= document.creator.email %></td>
         <td><%= document.subject %></td>
         <td><%= document.date %></td>
         <td><%= document.content %></td>
         <td><%= document.tags %></td>
         <td><%= document.conversationId %></td>
         <td><%= document.isSenderPrivate %></td>
-        <td><%= document.senderStatus %></td>
+        <td><%= document.senderStatus.description %></td>
         <td><%= document.isReceiverPrivate %></td>
-        <td><%= document.receiverStatus %></td>
+        <td><%= document.receiverStatus.description %></td>
         <td><%= link_to 'Show', document %></td>
         <td><%= link_to 'Edit', edit_document_path(document) %></td>
         <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>

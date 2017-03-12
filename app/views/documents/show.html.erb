@@ -7,17 +7,17 @@
 
 <p>
   <strong>Senderemail:</strong>
-  <%= @document.senderEmail %>
+  <%= @document.sender.email %>
 </p>
 
 <p>
   <strong>Receiveremal:</strong>
-  <%= @document.receiverEmal %>
+  <%= @document.receiver.email %>
 </p>
 
 <p>
   <strong>Creatoremail:</strong>
-  <%= @document.creatorEmail %>
+  <%= @document.creator.email %>
 </p>
 
 <p>
@@ -52,7 +52,7 @@
 
 <p>
   <strong>Senderstatus:</strong>
-  <%= @document.senderStatus %>
+  <%= @document.senderStatus.description %>
 </p>
 
 <p>
@@ -62,7 +62,7 @@
 
 <p>
   <strong>Receiverstatus:</strong>
-  <%= @document.receiverStatus %>
+  <%= @document.receiverStatus.description %>
 </p>
 
 <%= link_to 'Edit', edit_document_path(@document) %> |

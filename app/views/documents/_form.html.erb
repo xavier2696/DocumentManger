@@ -57,7 +57,7 @@
         <i class="material-icons login-icons prefix">face</i>
         <%= f.label :creator_id, "Creador"%>
         <br>
-        <%= f.select :creator_id, [[current_user.username+"-"+current_user.email,current_user.id]],{},{:disabled => true}%>
+        <%= f.select :creator_id, [[current_user.username+"-"+current_user.email,current_user.id]],{},{}%>
       </div>
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
