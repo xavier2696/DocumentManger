@@ -35,11 +35,13 @@ class DocumentsController < ApplicationController
   def new
     @document = Document.new
     @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"")
+    @statusesReceiver= Status.joins(:department).select("statuses.*, departments.\"departmentName\" AS \"departmentName\"")
     logger.debug @usersReceiver
     @usersSender = User.where(department_id: current_user.department_id)
     @currentUserDepartment = Department.find(current_user.department_id)
     @departmentReceiver = []
     addedIds = []
+    addedIds2 = []
     @usersReceiver.map{|u|
       if !addedIds.include?(u.department_id)
         addedIds.push(u.department_id)
@@ -48,6 +50,13 @@ class DocumentsController < ApplicationController
     }
     gon.departmentReceiver = @departmentReceiver
     gon.usersReceiver = @usersReceiver
+    gon.statusesReceiver = @statusesReceiver
+    @statusesReceiver.map{|s|
+      if !addedIds2.include?(s.department_id)
+        addedIds2.push(s.department_id)
+        #@departmentReceiver.push([s.departmentName,s.department_id])
+      end
+    }
   end
 
   # GET /documents/1/edit
@@ -66,14 +75,23 @@ class DocumentsController < ApplicationController
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
         @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
+        @statusesReceiver= Status.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
+
         @usersSender = User.where(department_id: current_user.department_id)
         @currentUserDepartment = Department.find(current_user.department_id)
         @departmentReceiver = []
         addedIds = []
+        addedIds2 = []
         @usersReceiver.map{|u|
           if !addedIds.include?(u.department_id)
             addedIds.push(u.department_id)
             @departmentReceiver.push([u.departmentName,u.department_id])
+          end
+        }
+        @statusesReceiver.map{|s|
+          if !addedIds2.include?(s.department_id)
+            addedIds2.push(s.department_id)
+            #@departmentReceiver.push([s.departmentName,s.department_id])
           end
         }
       end

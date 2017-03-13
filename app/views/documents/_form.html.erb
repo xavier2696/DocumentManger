@@ -106,7 +106,7 @@
   <%= f.label :senderStatus_id,"Sender status" %>
   <div class="input-field">
     
-    <%= f.collection_select :senderStatus_id, Status.all, :id, :description %>
+    <%= f.collection_select :senderStatus_id, Status.where(department_id: @currentUserDepartment.id), :id, :description %>
   </div>
   <div>
     <%= f.label :isReceiverPrivate, "Receiver is private?" %>
@@ -114,8 +114,10 @@
   </div>
   <%= f.label :receiverStatus_id, "Receiver status" %>
   <div class="input-field">
+    <%= f.select :receiverStatus_id, @statusesReceiver.map{|s| [s.description,s.id]}, {},{:onchange=>"onChangeReceiverStatus($(this).val())",
+        :class => "statusesReceiver-select"}
+         %>
     
-    <%= f.collection_select :receiverStatus_id, Status.all, :id, :description %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
