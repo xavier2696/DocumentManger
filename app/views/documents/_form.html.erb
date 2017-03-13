@@ -103,21 +103,25 @@
     <%= f.label :isSenderPrivate, "Sender is private?" %>
     <%= f.select :isSenderPrivate, options_for_select([['Yes', true], ['No', false]])%>
   </div>
-  <%= f.label :senderStatus_id,"Sender status" %>
-  <div class="input-field">
-    
+  
+  <div class="field">
+    <%= f.label :senderStatus_id,"Sender status" %>
     <%= f.collection_select :senderStatus_id, Status.where(department_id: @currentUserDepartment.id), :id, :description %>
   </div>
   <div>
     <%= f.label :isReceiverPrivate, "Receiver is private?" %>
     <%= f.select :isReceiverPrivate, options_for_select([['Yes', true], ['No', false]])%>
   </div>
-  <%= f.label :receiverStatus_id, "Receiver status" %>
-  <div class="input-field">
+  
+  <div class="field">
+    <%= f.label :receiverStatus_id, "Receiver status" %>
     <%= f.select :receiverStatus_id, @statusesReceiver.map{|s| [s.description,s.id]}, {},{:onchange=>"onChangeReceiverStatus($(this).val())",
         :class => "statusesReceiver-select"}
          %>
-    
+  </div>
+  <div class="field">
+     <%= f.label :conversationId %>
+    <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
