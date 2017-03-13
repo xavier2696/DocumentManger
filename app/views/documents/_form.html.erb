@@ -99,21 +99,23 @@
     <div class="tag-elements">
     </div>
   </div>
-  <div class="input-field">
-    <%= f.label :isSenderPrivate %>
-    <%= f.check_box :isSenderPrivate %>
+  <div>
+    <%= f.label :isSenderPrivate, "Sender is private?" %>
+    <%= f.select :isSenderPrivate, options_for_select([['Yes', true], ['No', false]])%>
   </div>
+  <%= f.label :senderStatus_id,"Sender status" %>
   <div class="input-field">
-    <%= f.label :senderStatus_id %>
-    <%= f.text_field :senderStatus_id %>
+    
+    <%= f.collection_select :senderStatus_id, Status.all, :id, :description %>
   </div>
-  <div class="input-field">
-    <%= f.label :isReceiverPrivate %>
-    <%= f.check_box :isReceiverPrivate %>
+  <div>
+    <%= f.label :isReceiverPrivate, "Receiver is private?" %>
+    <%= f.select :isReceiverPrivate, options_for_select([['Yes', true], ['No', false]])%>
   </div>
+  <%= f.label :receiverStatus_id, "Receiver status" %>
   <div class="input-field">
-    <%= f.label :receiverStatus_id %>
-    <%= f.text_field :receiverStatus_id %>
+    
+    <%= f.collection_select :receiverStatus_id, Status.all, :id, :description %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
