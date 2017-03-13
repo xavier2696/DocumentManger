@@ -22,6 +22,11 @@
 
   <tbody>
     <% @documents.each do |document| %>
+      <% bandera = false %>
+      <% if document.isReceiverPrivate && current_user.email == document.receiver.email || !document.isReceiverPrivate && current_user.department_id == document.receiver.department_id %>
+        <% bandera = true %>
+      <% end %>
+      <% if bandera || document.isSenderPrivate && current_user.email == document.sender.email || !document.isSenderPrivate && current_user.department_id == document.sender.department_id%>
         <tr>
           <td><%= document.documentCode %></td>
           <% if document.isSenderPrivate and current_user.email != document.sender.email%>
@@ -45,6 +50,7 @@
           <td><%= link_to 'Show', document %></td>
           <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
