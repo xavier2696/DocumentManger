@@ -1,0 +1,107 @@
+<br>
+<div class="row">
+	<div class="col s6">
+		<div class="card-panel white">
+			<h5>Documentos Enviados</h5>
+			<ul class="collapsible" data-collapsible="accordion">
+				<% @convID = 0 %>
+				<% @documents.each do |document| %>
+					<% if current_user.id == document.sender_id %>
+						<%if @convID == document.conversationId %>
+							<span>From: <%= document.conversationId %></span>
+							<span>To: <%= current_user.email %></span>
+							<span>Body: <%= document.content %></span>
+							<%= link_to "Show", document_path(document) %>
+						<% else %>
+							<li>
+								<div class="collapsible-header"><%= document.subject %></div>
+								<div class="collapsible-body">
+									<span>From: <%= document.conversationId %></span>
+									<span>To: <%= current_user.email %></span>
+									<span>Body: <%= document.content %></span>
+									<%= link_to "Show", document_path(document) %>
+								</div>
+							</li>
+						<% end %>
+					<% end %>
+					<% @convID = document.id %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col s6">
+		<div class="card-panel white">
+			<h5>Documentos Recibidos</h5>
+			<ul class="collapsible" data-collapsible="accordion">
+				<% @documents.each do |document| %>
+					<% if current_user.id == document.receiver_id && document.isSenderPrivate && document.isReceiverPrivate %>
+						<li>
+							<div class="collapsible-header"><%= document.subject %></div>
+							<div class="collapsible-body">
+								<span>From: <%= document.sender_id %></span>
+								<span>To: <%= current_user.email %></span>
+								<span>Body: <%= document.content %></span>
+								<%= link_to "Show", document_path(document) %>
+								<%= link_to "Answer", document_path(document) %>
+							</div>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col s6">
+		<div class="card-panel white">
+			<h5>Documentos Publicos Enviados del Departamento</h5>
+			<ul class="collapsible" data-collapsible="accordion">
+				<% convID = 0 %>
+				<% @documents.each do |document| %>
+					<% if current_user.id == document.sender_id && !document.isSenderPrivate %>
+						<li>
+							<div class="collapsible-header"><%= document.subject %></div>
+							<div class="collapsible-body">
+						<% if convID == document.conversationId %>
+							<span>From: <%= document.sender_id %></span>
+							<span>To: <%= current_user.email %></span>
+							<span>Body: <%= document.content %></span>
+							<%= link_to "Show", document_path(document) %>
+						<% else %>
+							<span>From: <%= document.sender_id %></span>
+							<span>To: <%= current_user.email %></span>
+							<span>Body: <%= document.content %></span>
+							<%= link_to "Show", document_path(document) %>
+							</div>
+						</li>
+						<% end %>
+					<% end %>
+					<% convID = document.conversationId %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+
+	<div class="col s6">
+		<div class="card-panel white">
+			<h5>Documentos Publicos Recibidos del Departamento</h5>
+			<ul class="collapsible" data-collapsible="accordion">
+				<% @documents.each do |document| %>
+					<% if current_user.id == document.receiver_id && !document.isReceiverPrivate%>
+						<li>
+							<div class="collapsible-header"><%= document.subject %></div>
+							<div class="collapsible-body">
+								<span>From: <%= document.sender_id %></span>
+								<span>To: <%= current_user.email %></span>
+								<span>Body: <%= document.content %></span>
+								<%= link_to "Show", document_path(document) %>
+							</div>
+						</li>
+					<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>
