@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>ID</th>
       <th>Documentcode</th>
       <th>Senderemail</th>
       <th>Receiver Email</th>
@@ -28,6 +29,7 @@
       <% end %>
       <% if bandera || document.isSenderPrivate && current_user.email == document.sender.email || !document.isSenderPrivate && current_user.department_id == document.sender.department_id%>
         <tr>
+          <td><%= document.id %>
           <td><%= document.documentCode %></td>
           <% if document.isSenderPrivate and current_user.email != document.sender.email%>
             <td>Private</td>
