@@ -98,35 +98,36 @@
     </div>
     <div class="tag-elements">
     </div>
-  </div>
+  
   <div>
-    <%= f.label :isSenderPrivate, "Sender is private?" %>
-    <%= f.select :isSenderPrivate, options_for_select([['Yes', true], ['No', false]])%>
+    <%= f.label :isSenderPrivate, "Privado para remitente?" %>
+    <%= f.select :isSenderPrivate, options_for_select([['Si', true], ['No', false]])%>
   </div>
   
   <div class="field">
-    <%= f.label :senderStatus_id,"Sender status" %>
+    <%= f.label :senderStatus_id,"Estatus remitente" %>
     <%= f.collection_select :senderStatus_id, Status.where(department_id: @currentUserDepartment.id), :id, :description %>
   </div>
   <div>
-    <%= f.label :isReceiverPrivate, "Receiver is private?" %>
-    <%= f.select :isReceiverPrivate, options_for_select([['Yes', true], ['No', false]])%>
+    <%= f.label :isReceiverPrivate, "Privado para destinatario?" %>
+    <%= f.select :isReceiverPrivate, options_for_select([['Si', true], ['No', false]])%>
   </div>
   
   <div class="field">
-    <%= f.label :receiverStatus_id, "Receiver status" %>
+    <%= f.label :receiverStatus_id, "Estatus destinatario" %>
     <%= f.select :receiverStatus_id, @statusesReceiver.map{|s| [s.description,s.id]}, {},{:onchange=>"onChangeReceiverStatus($(this).val())",
         :class => "statusesReceiver-select"}
          %>
   </div>
   <div class="field">
-     <%= f.label :conversationId %>
+     <%= f.label :conversationI, "Conversacion" %>
     <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
       Enviar Documento <i class="material-icons right">send</i>
     <% end %>
+  </div>
   </div>
 <% end %>
 <script type="text/javascript">

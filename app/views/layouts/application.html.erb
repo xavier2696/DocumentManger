@@ -21,14 +21,19 @@
             </a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <% if current_user.isGeneralAdmin? %>
+                <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
+                <li><%= link_to "Nuevo Documento", new_document_path %></li>
               <% elsif current_user.isDepartmentAdmin? %>
+                <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
+                <li><%= link_to "Nuevo Documento", new_document_path %></li>
               <% else %>
+                <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
                 <li><%= link_to "Crear Documento", new_document_path %></li>
               <% end %>
