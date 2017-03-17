@@ -113,27 +113,52 @@
 		<div class="card-panel white">
 			<h5>Documentos Publicos Enviados del Departamento</h5>
 			<ul class="collapsible" data-collapsible="accordion">
-				<% convID = 0 %>
-				<% @documents.each do |document| %>
-					<% if current_user.id == document.sender_id && !document.isSenderPrivate %>
-						<li>
-							<div class="collapsible-header"><%= document.subject %></div>
-							<div class="collapsible-body">
-						<% if convID == document.conversationId %>
-							<span>From: <%= document.sender_id %></span>
-							<span>To: <%= current_user.email %></span>
+				<% @convID = 0 %> 
+				<% @counter2 = 0 %>
+				<% @documents.each do |document| %>					
+					<% if current_user.id == document.receiver_id && !document.isSenderPrivate %>
+						<% if @convID == document.conversationId %>
+							<span>Id: <%= document.id %>
+							<span>ConvId: <%= document.conversationId %>
+							<span>Subject: <%= document.subject %> </span>
+							<span>To: <%= document.receiver_id %></span>
 							<span>Body: <%= document.content %></span>
-							<%= link_to "Show", document_path(document) %>
+							<%= link_to "Show", document_path(document) %><br>
+							<%if @counter2 == getAmountRecieved()-1 %>
+								</div></li>
+							<% end %>
+							<%@convID = document.conversationId %>
 						<% else %>
-							<span>From: <%= document.sender_id %></span>
-							<span>To: <%= current_user.email %></span>
-							<span>Body: <%= document.content %></span>
-							<%= link_to "Show", document_path(document) %>
-							</div>
-						</li>
+							<%if @counter2 > 0 %>
+								</div>
+								</li>
+								<li>
+									<div class="collapsible-header"><%= document.subject %></div>
+									<div class="collapsible-body">
+										<span>Id: <%= document.id %>
+										<span>ConvId: <%= document.conversationId %>
+										<span>To: <%= document.receiver_id %></span>
+										<span>Body: <%= document.content %></span>
+										<%= link_to "Show", document_path(document) %><br>
+								<%@convID = document.conversationId %>
+							<% else %>
+								<li>
+									<div class="collapsible-header"><%= document.subject %></div>
+									<div class="collapsible-body">
+										<span>Id: <%= document.id %>
+										<span>ConvId: <%= document.conversationId %>
+										<span>To: <%= document.receiver_id %></span>
+										<span>Body: <%= document.content %></span>
+										<%= link_to "Show", document_path(document) %><br>
+								<%if document.conversationId == nil %>
+									<% @convID = document.id %>
+								<% else %>
+									<% @convID = document.conversationId %>
+								<% end %>
+							<% end %>
 						<% end %>
+						<% @counter2 = @counter2 + 1 %>
 					<% end %>
-					<% convID = document.conversationId %>
 				<% end %>
 			</ul>
 		</div>
@@ -143,17 +168,51 @@
 		<div class="card-panel white">
 			<h5>Documentos Publicos Recibidos del Departamento</h5>
 			<ul class="collapsible" data-collapsible="accordion">
-				<% @documents.each do |document| %>
-					<% if current_user.id == document.receiver_id && !document.isReceiverPrivate%>
-						<li>
-							<div class="collapsible-header"><%= document.subject %></div>
-							<div class="collapsible-body">
-								<span>From: <%= document.sender_id %></span>
-								<span>To: <%= current_user.email %></span>
-								<span>Body: <%= document.content %></span>
-								<%= link_to "Show", document_path(document) %>
-							</div>
-						</li>
+				<% @convID = 0 %> 
+				<% @counter2 = 0 %>
+				<% @documents.each do |document| %>					
+					<% if current_user.id == document.receiver_id && !document.isReceiverPrivate %>
+						<% if @convID == document.conversationId %>
+							<span>Id: <%= document.id %>
+							<span>ConvId: <%= document.conversationId %>
+							<span>Subject: <%= document.subject %> </span>
+							<span>To: <%= document.receiver_id %></span>
+							<span>Body: <%= document.content %></span>
+							<%= link_to "Show", document_path(document) %><br>
+							<%if @counter2 == getAmountRecieved()-1 %>
+								</div></li>
+							<% end %>
+							<%@convID = document.conversationId %>
+						<% else %>
+							<%if @counter2 > 0 %>
+								</div>
+								</li>
+								<li>
+									<div class="collapsible-header"><%= document.subject %></div>
+									<div class="collapsible-body">
+										<span>Id: <%= document.id %>
+										<span>ConvId: <%= document.conversationId %>
+										<span>To: <%= document.receiver_id %></span>
+										<span>Body: <%= document.content %></span>
+										<%= link_to "Show", document_path(document) %><br>
+								<%@convID = document.conversationId %>
+							<% else %>
+								<li>
+									<div class="collapsible-header"><%= document.subject %></div>
+									<div class="collapsible-body">
+										<span>Id: <%= document.id %>
+										<span>ConvId: <%= document.conversationId %>
+										<span>To: <%= document.receiver_id %></span>
+										<span>Body: <%= document.content %></span>
+										<%= link_to "Show", document_path(document) %><br>
+								<%if document.conversationId == nil %>
+									<% @convID = document.id %>
+								<% else %>
+									<% @convID = document.conversationId %>
+								<% end %>
+							<% end %>
+						<% end %>
+						<% @counter2 = @counter2 + 1 %>
 					<% end %>
 				<% end %>
 			</ul>
