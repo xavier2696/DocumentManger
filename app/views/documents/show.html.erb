@@ -67,6 +67,7 @@
     <strong class="documentLabel">Tags:</strong>
     <%= @document.tags %>
   </p>
+  
 </div>
 <div class="col s12 m4 l6">
   <h5>Estados <i class="material-icons login-icons prefix">info_outline</i></h5>
@@ -199,7 +200,9 @@
     <strong>Receiverstatus:</strong>
     <%= @document.receiverStatus.description %>
   </p>-->
-
+    <p>
+    <%= image_tag @document.picture %>
+  </p>
   
   <%= link_to 'Back', documents_path %>
 

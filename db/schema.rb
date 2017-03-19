@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170216043112) do
+ActiveRecord::Schema.define(version: 20170319222442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,13 +30,18 @@ ActiveRecord::Schema.define(version: 20170216043112) do
     t.integer  "conversationId"
     t.boolean  "isSenderPrivate"
     t.boolean  "isReceiverPrivate"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.integer  "sender_id"
     t.integer  "receiver_id"
     t.integer  "creator_id"
     t.integer  "senderStatus_id"
     t.integer  "receiverStatus_id"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
+    t.string   "picture"
     t.index ["creator_id"], name: "index_documents_on_creator_id", using: :btree
     t.index ["receiverStatus_id"], name: "index_documents_on_receiverStatus_id", using: :btree
     t.index ["receiver_id"], name: "index_documents_on_receiver_id", using: :btree
@@ -58,6 +63,13 @@ ActiveRecord::Schema.define(version: 20170216043112) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.index ["department_id"], name: "index_statuses_on_department_id", using: :btree
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "tagName"
+    t.integer  "department_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|

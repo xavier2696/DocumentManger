@@ -122,6 +122,11 @@
      <%= f.label :conversationI, "Conversacion" %>
     <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
   </div>
+  <div>
+    <%= f.label :pictures %>
+    <%= f.file_field :picture, multiple: false, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
+    
+  </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
       Enviar Documento <i class="material-icons right">send</i>
