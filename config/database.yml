@@ -24,8 +24,8 @@ default: &default
 development:
   <<: *default
   database: DocumentManager_development
-  user: "ubuntu"
-  password: "pejuan"
+  user: "postgres"
+  password: "j8r74e3h"
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

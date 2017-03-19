@@ -27,13 +27,15 @@ class DepartmentsController < ApplicationController
     @department = Department.new(department_params)
 
     respond_to do |format|
-      if @department.save
-        format.html { redirect_to @department, notice: 'Department was successfully created.' }
-        format.json { render :show, status: :created, location: @department }
-      else
-        format.html { render :new }
-        format.json { render json: @department.errors, status: :unprocessable_entity }
-      end
+    if @department.save
+        @status = Status.new(description: "Nuevo", department_id: @department.id)
+        if (@status.save)
+          format.html { redirect_to action: "index", notice: 'Department was successfully created.' }
+        else
+          format.html { render :new }
+          format.json { render json: @department.errors, status: :unprocessable_entity }
+        end
+    end
     end
   end
 

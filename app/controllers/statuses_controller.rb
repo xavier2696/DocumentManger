@@ -28,8 +28,9 @@ class StatusesController < ApplicationController
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to @status, notice: 'Status was successfully created.' }
-        format.json { render :show, status: :created, location: @status }
+        #format.html { redirect_to @status, notice: 'Status was successfully created.' }
+        #format.json { render :show, status: :created, location: @status }
+        format.html { redirect_to action: "index", notice: 'Status was successfully created.' }
       else
         format.html { render :new }
         format.json { render json: @status.errors, status: :unprocessable_entity }

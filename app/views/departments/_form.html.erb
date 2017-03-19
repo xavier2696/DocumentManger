@@ -11,12 +11,15 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :departmentName %>
-    <%= f.text_field :departmentName %>
-  </div>
+  <div class="input-field">
+        <i class="material-icons login-icons prefix">description</i>
+        <%= f.label :departmentName, "Nombre del departamento"%>
+        <%= f.text_field :departmentName, :required => true%>
+      </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= button_tag( :class => "waves-effect waves-light btn") do %>
+      Crear Departamento <i class="material-icons right">send</i>
+    <% end %>
   </div>
 <% end %>

@@ -11,74 +11,79 @@
   <% end %>
   <div class="header">
     <div class="doc-metadata">
-      <div class="input-field doc-code">
+      <div class="input-field department-input">
         <i class="material-icons login-icons prefix">description</i>
         <%= f.label :documentCode, "Código de Documento"%>
         <%= f.text_field :documentCode, :required => true%>
       </div>
-      <div class="input-field data-field">
+      <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">date_range</i>
         <%= f.label :date, "Fecha"%>
-        <%= f.text_field :date, class: "datepicker"%>
+        <%= f.text_field :date, class: "datepicker", :required => true%>
       </div>
     </div>
+    <h6>Remitente</h6>
     <div class="contact-info">
-      <div class="input-field contact-input">
-        <i class="material-icons login-icons prefix">contact_mail</i>
-        <%= f.label :sender_id,"Remitente"%><br>
-        <%= f.select :sender_id, @usersSender.map{|u|[u.username+"-"+u.email,u.id]}
-         %>
-      </div>
+      
       <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentSender">Departamento</label>
         <br>
         <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
       </div>
-    </div>
-    <div class="contact-info">
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">contact_mail</i>
-        <%= f.label :receiver_id, "Destinatario" %>
-        <br>
-        <%= f.select :receiver_id, @usersReceiver.map{|u| [u.username+"-"+u.email,u.id]}, {},{:onchange=>"onChangeReceiverUser($(this).val())",
-        :class => "receiver-select"}
+        <%= f.label :sender_id,"Remitente"%><br>
+        <%= f.select :sender_id, @usersSender.map{|u|[u.username+"-"+u.email,u.id]}
          %>
       </div>
-      <div class="input-field department-input">
+    </div>
+    <h6>Destinatario</h6>
+    <div class="contact-info">
+    <div class="input-field department-input">
         <i class="material-icons login-icons prefix">business</i>
         <label for="departmentReceiver">Departamento</label><br>
         <%= select_tag "", options_for_select(@departmentReceiver), class: "receiver-department-select", :onchange=>"onChangeReceiverDepartment($(this).val())"
          %>
       </div>
+      <div class="input-field contact-input">
+        <i class="material-icons login-icons prefix">contact_mail</i>
+        <%= f.label :receiver_id, "Destinatario" %>
+        <br>
+        <%= f.select :receiver_id, @usersReceiver.map{|u| [u.username+"-"+u.email,u.id]}, {},{
+        :class => "receiver-select", :disabled => true, :required => true}
+         %>
+      </div>
     </div>
+    <h6>Creador</h6>
     <div class="contact-info">
+    <div class="input-field department-input">
+        <i class="material-icons login-icons prefix">business</i>
+        <label for="departmentCreator">Departamento</label>
+        <br>
+        <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
+      </div>
       <div class="input-field contact-input">
         <i class="material-icons login-icons prefix">face</i>
         <%= f.label :creator_id, "Creador"%>
         <br>
         <%= f.select :creator_id, [[current_user.username+"-"+current_user.email,current_user.id]],{},{}%>
       </div>
-      <div class="input-field department-input">
-        <i class="material-icons login-icons prefix">business</i>
-        <label for="departmentCreator">Departamento</label>
-        <br>
-        <%= text_field_tag "", @currentUserDepartment.departmentName, :disabled => true%>
-      </div>
+      
     </div>
   </div>
   <div class="header">
     <div class="input-field">
       <i class="material-icons login-icons prefix">subject</i>
       <%= f.label :subject, "Asunto" %>
-      <%= f.text_field :subject %>
+      <%= f.text_field :subject, :required => true %>
     </div>
   </div>
   <div class="content-container">
     <div class="input-field content-wrapper">
       <i class="material-icons login-icons prefix">drafts</i>
-      <%= f.label :content %>
-      <%= f.text_area :content,class: "materialize-textarea document_content" %>
+      <%= f.label :content, "Contenido" %>
+      <%= f.text_area :content,class: "materialize-textarea document_content", :required => true %>
     </div>
     <div class="file-field input-field">
       <div class="actions">
@@ -101,7 +106,7 @@
   
   <div>
     <%= f.label :isSenderPrivate, "Privado para remitente?" %>
-    <%= f.select :isSenderPrivate, options_for_select([['Si', true], ['No', false]])%>
+    <%= f.select :isSenderPrivate, options_for_select([['No', false], ['Si', true]])%>
   </div>
   
   <div class="field">
@@ -110,15 +115,9 @@
   </div>
   <div>
     <%= f.label :isReceiverPrivate, "Privado para destinatario?" %>
-    <%= f.select :isReceiverPrivate, options_for_select([['Si', true], ['No', false]])%>
+    <%= f.select :isReceiverPrivate, options_for_select([['No', false], ['Si', true]])%>
   </div>
   
-  <div class="field">
-    <%= f.label :receiverStatus_id, "Estatus destinatario" %>
-    <%= f.select :receiverStatus_id, @statusesReceiver.map{|s| [s.description,s.id]}, {},{:onchange=>"onChangeReceiverStatus($(this).val())",
-        :class => "statusesReceiver-select"}
-         %>
-  </div>
   <div class="field">
      <%= f.label :conversationI, "Conversacion" %>
     <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
@@ -131,5 +130,5 @@
   </div>
 <% end %>
 <script type="text/javascript">
-  tagEvent();
+  tagEvent();  
 </script>

@@ -26,7 +26,7 @@
 }
 
 .new_document .input-field.department-input {
-    width: 40%;
+    width: 50%;
 }
 
 .new_document .doc-metadata {
@@ -100,4 +100,9 @@ h5{
     font-size: 13px;
     line-height: 18px;
     margin: 33px;
+}
+
+.new_document{
+    width: 90%;
+    margin: auto;
 }

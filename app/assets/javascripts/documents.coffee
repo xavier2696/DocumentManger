@@ -30,9 +30,11 @@
 @onChangeReceiverDepartment= (departmentId)->
 
 	usersReceiverSelect  = document.getElementsByClassName("receiver-select")[0]
+
 	parent = usersReceiverSelect.parentElement
 	select = $(usersReceiverSelect).find(".receiver-select").clone()
 	select.empty()
+	select[0].disabled = false
 	usersReceiverSelect.remove()
 	gon.usersReceiver.map((user,index) ->
 		
@@ -50,6 +52,7 @@
 	parent2 = statusesReceiverSelect.parentElement
 	select2 = $(statusesReceiverSelect).find(".statusesReceiver-select").clone()
 	select2.empty()
+	select2[0].disabled = false
 	statusesReceiverSelect.remove()
 	gon.statusesReceiver.map((status,index) ->
 		
@@ -64,36 +67,5 @@
 	$(select2).material_select()
 
 
-@onChangeReceiverUser= (userId)->
-	console.log userId
-	departmentReceiverSelect  = document.getElementsByClassName("receiver-department-select")[0]
-	parent = departmentReceiverSelect.parentElement
-	select = $(departmentReceiverSelect).find(".receiver-department-select").clone()
-	departmentReceiverSelect.remove()
-
-	i = 0
-	while i < gon.usersReceiver.length
-		if parseInt(gon.usersReceiver[i].id) == parseInt(userId)
-			select.val gon.usersReceiver[i].department_id
-			break
-		i++
-	parent.appendChild(select[0])
-	$(select).material_select()
-
-@onChangeReceiverStatus= (statusId)->
-	console.log statusId
-	departmentReceiverSelect  = document.getElementsByClassName("receiver-department-select")[0]
-	parent = departmentReceiverSelect.parentElement
-	select = $(departmentReceiverSelect).find(".receiver-department-select").clone()
-	departmentReceiverSelect.remove()
-
-	i = 0
-	while i < gon.statusesReceiver.length
-		if parseInt(gon.statusesReceiver[i].id) == parseInt(statusId)
-			select.val gon.statusesReceiver[i].department_id
-			break
-		i++
-	parent.appendChild(select[0])
-	$(select).material_select()
 
 	

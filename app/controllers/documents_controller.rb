@@ -34,7 +34,7 @@ class DocumentsController < ApplicationController
   # GET /documents/new
   def new
     @document = Document.new
-    @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"")
+    @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"").where.not(id: current_user.id)
     @statusesReceiver= Status.joins(:department).select("statuses.*, departments.\"departmentName\" AS \"departmentName\"")
     logger.debug @usersReceiver
     @usersSender = User.where(department_id: current_user.department_id)
@@ -57,6 +57,7 @@ class DocumentsController < ApplicationController
         #@departmentReceiver.push([s.departmentName,s.department_id])
       end
     }
+    
   end
 
   # GET /documents/1/edit
@@ -67,16 +68,48 @@ class DocumentsController < ApplicationController
   # POST /documents.json
   def create
     @document = Document.new(document_params)
+    @receiverStatus = Status.where(department_id: User.find(@document.receiver_id).department_id, description: "Nuevo")
+    if(@receiverStatus != nil && @receiverStatus != 0) 
+      @document.receiverStatus_id = @receiverStatus[0].id
+    end
     respond_to do |format|
-      if @document.save
-        format.html { redirect_to @document, notice: 'Document was successfully created.' }
-        format.json { render :show, status: :created, location: @document }
-      else
+      if @document.receiver_id != @document.sender_id 
+        if @document.save
+          format.html { redirect_to @document, notice: 'Document was successfully created.' }
+          format.json { render :show, status: :created, location: @document }
+        else
+          format.html { render :new }
+          format.json { render json: @document.errors, status: :unprocessable_entity }
+          @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"").where.not(id: current_user.id)
+          @statusesReceiver= Status.joins(:department).select("statuses.*, departments.\"departmentName\" AS \"departmentName\"")
+          logger.debug @usersReceiver
+          @usersSender = User.where(department_id: current_user.department_id)
+          @currentUserDepartment = Department.find(current_user.department_id)
+          @departmentReceiver = []
+          addedIds = []
+          addedIds2 = []
+          @usersReceiver.map{|u|
+            if !addedIds.include?(u.department_id)
+              addedIds.push(u.department_id)
+              @departmentReceiver.push([u.departmentName,u.department_id])
+            end
+          }
+          gon.departmentReceiver = @departmentReceiver
+          gon.usersReceiver = @usersReceiver
+          gon.statusesReceiver = @statusesReceiver
+          @statusesReceiver.map{|s|
+            if !addedIds2.include?(s.department_id)
+              addedIds2.push(s.department_id)
+              #@departmentReceiver.push([s.departmentName,s.department_id])
+            end
+          }
+          end  
+      else#el usuario que envia es el mismo que recibe
         format.html { render :new }
         format.json { render json: @document.errors, status: :unprocessable_entity }
-        @usersReceiver= User.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
-        @statusesReceiver= Status.select("*").joins("INNER JOIN departments ON \"departments\".id = \"users\".department_id")
-
+         @usersReceiver= User.joins(:department).select("users.*, departments.\"departmentName\" AS \"departmentName\"").where.not(id: current_user.id)
+        @statusesReceiver= Status.joins(:department).select("statuses.*, departments.\"departmentName\" AS \"departmentName\"")
+        logger.debug @usersReceiver
         @usersSender = User.where(department_id: current_user.department_id)
         @currentUserDepartment = Department.find(current_user.department_id)
         @departmentReceiver = []
@@ -88,6 +121,9 @@ class DocumentsController < ApplicationController
             @departmentReceiver.push([u.departmentName,u.department_id])
           end
         }
+        gon.departmentReceiver = @departmentReceiver
+        gon.usersReceiver = @usersReceiver
+        gon.statusesReceiver = @statusesReceiver
         @statusesReceiver.map{|s|
           if !addedIds2.include?(s.department_id)
             addedIds2.push(s.department_id)
