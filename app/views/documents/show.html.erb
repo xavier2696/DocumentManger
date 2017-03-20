@@ -65,7 +65,15 @@
   </p>
   <p>
     <strong class="documentLabel">Tags:</strong>
-    <%= @document.tag_ids %>
+    </br>
+    <% a = @document.tag_ids %>
+    <% for item in a %>
+      <% Tag.all.each do |tag| %>
+        <% if tag.id == item %>
+          <%= tag.tagName %><br/>
+        <% end %>
+      <% end %>
+    <% end %>
   </p>
   
 </div>
@@ -201,7 +209,9 @@
     <%= @document.receiverStatus.description %>
   </p>-->
     <p>
-    <%= image_tag @document.picture %>
+      <strong>Pictures:</strong>
+      
+      <%= image_tag @document.picture %>
   </p>
   
   <%= link_to 'Back', documents_path %>
