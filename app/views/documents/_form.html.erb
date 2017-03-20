@@ -101,6 +101,10 @@
       <%= f.label :tags %>
       <%= f.text_field :tags, class: "tag-input" %>
     </div>
+    <div>
+      <%= f.label :tags %>
+      <%= collection_check_boxes(:document, :tags, Tag.all, :id, :tagName) %>
+    </div>
     <div class="tag-elements">
     </div>
   
