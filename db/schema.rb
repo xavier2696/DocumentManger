@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319222442) do
+ActiveRecord::Schema.define(version: 20170320162513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,11 @@ ActiveRecord::Schema.define(version: 20170319222442) do
     t.index ["receiver_id"], name: "index_documents_on_receiver_id", using: :btree
     t.index ["senderStatus_id"], name: "index_documents_on_senderStatus_id", using: :btree
     t.index ["sender_id"], name: "index_documents_on_sender_id", using: :btree
+  end
+
+  create_table "documents_tags", id: false, force: :cascade do |t|
+    t.integer "tag_id",      null: false
+    t.integer "document_id", null: false
   end
 
   create_table "images", force: :cascade do |t|

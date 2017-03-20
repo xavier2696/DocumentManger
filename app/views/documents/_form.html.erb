@@ -96,18 +96,18 @@
         <input class="file-path validate" type="text">
       </div>
     </div>
-    <div class="input-field">
-      <i class="material-icons login-icons prefix">label</i>
-      <%= f.label :tags %>
-      <%= f.text_field :tags, class: "tag-input" %>
-    </div>
-    <div>
-      <%= f.label :tags %>
-      <%= collection_check_boxes(:document, :tags, Tag.all, :id, :tagName) %>
-    </div>
+
     <div class="tag-elements">
     </div>
-  
+  <div>
+    <%= f.label "Tags" %><br/>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tagName do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
+  </div>
   <div>
     <%= f.label :isSenderPrivate, "Privado para remitente?" %>
     <%= f.select :isSenderPrivate, options_for_select([['No', false], ['Si', true]])%>
