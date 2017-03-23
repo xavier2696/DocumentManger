@@ -11,42 +11,50 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
+  <div class="row">
+      <div class="col s10 offset-s1">
+        <div class="card-panel white">
+          <div class="row">
+            <div class="field col s6">
+              <%= f.label "E-Mail" %>
+              <%= f.text_field :email, :disabled=> true %>
+            </div>
+            <div class="field col s6">
+              <%= f.label "Contraseña" %>
+              <%= f.text_field :password, :disabled=> true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field col s6">
+              <%= f.label "Nombre de Usuario" %>
+              <%= f.text_field :username, :disabled=> true %>
+            </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.text_field :password %>
-  </div>
-
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-
-  <div class="field">
-    <%= f.label :department_id %>
-    <%= f.text_field :department_id %>
-  </div>
-
-  <div class="field">
-    <%= f.label :position %>
-    <%= f.text_field :position %>
-  </div>
-
-  <div class="field">
-    <%= f.label :isGeneralAdmin %>
-    <%= f.text_field :isGeneralAdmin %>
-  </div>
-
-  <div class="field">
-    <%= f.label :isDepartmentAdmin %>
-    <%= f.text_field :isDepartmentAdmin %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+            <div class="field col s6">
+              <%= f.label "Departamento" %>
+              <%= f.text_field :department_id, :disabled=> true %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="field col s6">
+              <%= f.label "Cargo" %>
+              <%= f.text_field :position, :disabled=> true  %>
+            </div>
+            <div class="field col s6">
+              <%= f.check_box :isGeneralAdmin, id:"isGeneralAdmin" %>
+              <%= f.label "Administrador General", for:"isGeneralAdmin", id:"isGeneralAdmin" %>
+            </div><br>
+            <div class="field col s6">
+              <%= f.check_box :isDepartmentAdmin, id:"isDepartmentAdmin" %>
+              <%= f.label "Administrador de Departamento", for:"isDepartmentAdmin", id:"isDepartmentAdmin" %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s6 offset-s3 center">
+              <%= f.submit "Actualizar", class:"center waves-effect waves-light btn blue-grey lighten-2" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 <% end %>

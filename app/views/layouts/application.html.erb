@@ -11,6 +11,7 @@
   </head>
   <body>
     <% if user_signed_in? %>
+
       <div class="page-container">
         <nav>
           <div class="nav-wrapper">
@@ -25,18 +26,19 @@
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
-                <!-- Dropdown Trigger -->
-                <li><a class="dropdown-button" href="#!" data-activates="dropdown1">Documentos<i class="material-icons right" style="margin-top:-20px;">arrow_drop_down</i></a></li>
+                <li><%= link_to "Usuarios", users_path %></li>
+                <li><%= link_to "Documentos", documents_path %></li>
+                <li><%= link_to "Nuevo Documento", new_document_path %></li>
               <% elsif current_user.isDepartmentAdmin? %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
-                <!-- Dropdown Trigger -->
-                <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right" style="margin-top:-20px;">arrow_drop_down</i></a></li>
+                <li><%= link_to "Documentos", documents_path %></li>
+                <li><%= link_to "Nuevo Documento", new_document_path %></li>
               <% else %>
                 <li><%= link_to "Dashboard", root_path %></li>
-                <!-- Dropdown Trigger -->
-                <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right" style="margin-top:-20px;">arrow_drop_down</i></a></li>
+                <li><%= link_to "Documentos", documents_path %></li>
+                <li><%= link_to "Nuevo Documento", new_document_path %></li>
               <% end %>
               <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %></li>  
             </ul>
@@ -48,12 +50,6 @@
       </div>
     </div>
 
-    <!---Dropdown de documentos -->
-    <ul id="dropdown1" class="dropdown-content">
-      <li><%= link_to "Nuevo Documento", new_document_path, class: "grey-text text-darken-4" %></li>
-      <li class="divider" ></li>
-      <li><%= link_to "Indice de Documentos", documents_path, class: "grey-text text-darken-4" %></li>
-    </ul>
 
 
     <%if user_signed_in? %>
@@ -62,6 +58,7 @@
           <li><%= link_to "Dashboard", root_path %></li>
           <li><%= link_to "Departamentos", departments_path %></li>
           <li><%= link_to "Estados", statuses_path %></li>
+          <li><%= link_to "Usuarios", users_path %></li>
           <!-- Dropdown Trigger -->
           <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right" >arrow_drop_down</i></a></li>
         <% elsif current_user.isDepartmentAdmin? %>
