@@ -17,7 +17,7 @@
 
 <p>
   <strong>Department:</strong>
-  <%= @user.department %>
+  <%= @user.department.departmentName %>
 </p>
 
 <p>
@@ -27,12 +27,22 @@
 
 <p>
   <strong>Isgeneraladmin:</strong>
-  <%= @user.isGeneralAdmin %>
+  <% if @user.isGeneralAdmin %>
+  
+   Yes
+  <% else %>
+   No
+  <% end %>
 </p>
 
 <p>
   <strong>Isdepartmentadmin:</strong>
-  <%= @user.isDepartmentAdmin %>
+  <% if @user.isDepartmentAdmin %>
+  
+   Yes
+  <% else %>
+   No
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
