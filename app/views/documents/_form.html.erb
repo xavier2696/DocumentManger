@@ -122,9 +122,9 @@
     <%= f.select :isReceiverPrivate, options_for_select([['No', false], ['Si', true]])%>
   </div>
   
-  <div class="field">
+  <div class="field" style="display: none;">
      <%= f.label :conversationI, "Conversacion" %>
-    <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
+    <%= f.text_field :conversationId, :value => params[:conversationId] %>
   </div>
   <div>
     <%= f.label :pictures %>

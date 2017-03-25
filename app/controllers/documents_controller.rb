@@ -5,7 +5,6 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
-
   end
 
   # GET /documents/1
@@ -67,7 +66,12 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
+    @documents = Document.all
     @document = Document.new(document_params)
+
+    if !@documents.count 
+      @document.conversationId = 1
+    end
     @receiverStatus = Status.where(department_id: User.find(@document.receiver_id).department_id, description: "Nuevo")
     if(@receiverStatus != nil && @receiverStatus != 0) 
       @document.receiverStatus_id = @receiverStatus[0].id
@@ -133,6 +137,24 @@ class DocumentsController < ApplicationController
       end
     end
   end
+
+  def getNextConvID
+    @documents = Document.all
+    nextConvID = 0
+    if @documents.count
+      @documents.each do |document|
+        if document.conversationId > nextConvID
+          nextConvID = document.conversationId
+        end
+      end
+      nextConvID = nextConvID + 1
+      return nextConvID
+    else
+      return 1
+    end
+  end
+
+  helper_method :getNextConvID
 
   # PATCH/PUT /documents/1
   # PATCH/PUT /documents/1.json
