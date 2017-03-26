@@ -144,12 +144,14 @@
     <%= @document.isReceiverPrivate %>
   </p>
   <p>
-    <% docID = @document.id %>
-    <% Archive.all.each do |file| %>
-      <% if file.document_id == docID %>
-        <%= image_tag file.archive %><br/>
+    <div class="carousel">
+      <% docID = @document.id %>
+      <% Archive.all.each do |file| %>
+        <% if file.document_id == docID %>
+          <a class="carousel-item"><%= image_tag file.archive %><br/></a>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </p>
  
 
