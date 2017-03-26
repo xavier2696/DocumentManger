@@ -75,6 +75,9 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.receiver_id != @document.sender_id 
         if @document.save
+          params[:document][:archive_data].each do |file|
+            @document.archives.create!(:archive => file)
+          end
           format.html { redirect_to @document, notice: 'Document was successfully created.' }
           format.json { render :show, status: :created, location: @document }
         else
@@ -131,6 +134,8 @@ class DocumentsController < ApplicationController
           end
         }
       end
+      ##nuevo
+      
     end
   end
 
@@ -166,6 +171,6 @@ class DocumentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
-    params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id, :picture, tag_ids:[])
+    params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id, :picture, tag_ids:[], :archive_data => [])
   end
 end

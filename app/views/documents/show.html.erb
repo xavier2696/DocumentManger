@@ -143,7 +143,14 @@
     <strong class="documentLabel">Privado para receptor:</strong>
     <%= @document.isReceiverPrivate %>
   </p>
-
+  <p>
+    <% docID = @document.id %>
+    <% Archive.all.each do |file| %>
+      <% if file.document_id == docID %>
+        <%= image_tag file.archive %><br/>
+      <% end %>
+    <% end %>
+  </p>
  
 
 </div>
@@ -208,11 +215,7 @@
     <strong>Receiverstatus:</strong>
     <%= @document.receiverStatus.description %>
   </p>-->
-    <p>
-      <strong>Pictures:</strong>
-      
-      <%= image_tag @document.picture %>
-  </p>
+    
   
   <%= link_to 'Back', documents_path %>
 

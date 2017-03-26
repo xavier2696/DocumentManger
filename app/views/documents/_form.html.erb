@@ -85,17 +85,7 @@
       <%= f.label :content, "Contenido" %>
       <%= f.text_area :content,class: "materialize-textarea document_content", :required => true %>
     </div>
-    <div class="file-field input-field">
-      <div class="actions">
-        <div class="waves-effect waves-light btn">
-          <i class="material-icons">attach_file</i>
-          <input type="file" multiple>
-        </div>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-    </div>
+    
 
     <div class="tag-elements">
     </div>
@@ -127,9 +117,8 @@
     <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
   </div>
   <div>
-    <%= f.label :pictures %>
-    <%= f.file_field :picture, multiple: false, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
-    
+    <%= f.label :archives %>
+    <%= f.file_field :archive_data, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>
