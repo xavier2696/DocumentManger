@@ -1,31 +1,31 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  documentCode: MyString
-  senderEmail: one
-  receiverEmal: one
-  creatorEmail: one
-  subject: MyString
-  date: 2017-02-12
-  content: MyText
-  tags: MyString
-  conversationId: 1
-  isSenderPrivate: 
-  senderStatus: one
-  isReceiverPrivate: 
-  receiverStatus: one
+#one:
+ # documentCode: MyString
+ # senderEmail: one
+ # receiverEmal: one
+ # creatorEmail: one
+ # subject: MyString
+ # date: 2017-02-12
+ # content: MyText
+ # tags: MyString
+ # conversationId: 1
+ # isSenderPrivate: 
+ # senderStatus: one
+ # isReceiverPrivate: 
+ # receiverStatus: one
 
-two:
-  documentCode: MyString
-  senderEmail: two
-  receiverEmal: two
-  creatorEmail: two
-  subject: MyString
-  date: 2017-02-12
-  content: MyText
-  tags: MyString
-  conversationId: 1
-  isSenderPrivate: 
-  senderStatus: two
-  isReceiverPrivate: 
-  receiverStatus: two
+#two:
+  #documentCode: MyString
+  #senderEmail: two
+  #receiverEmal: two
+  #creatorEmail: two
+  #subject: MyString
+  #date: 2017-02-12
+  #content: MyText
+  #tags: MyString
+  #conversationId: 1
+  #isSenderPrivate: 
+  #senderStatus: two
+  #isReceiverPrivate: 
+  #receiverStatus: two

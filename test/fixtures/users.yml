@@ -1,31 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  email: MyString
-  password: MyString
-  username: MyString
-  department: one
-  position: MyString
-  isGeneralAdmin: 
-  isDepartmentAdmin: 
-
-two:
-  email: MyString
-  password: MyString
-  username: MyString
-  department: two
-  position: MyString
-  isGeneralAdmin: 
-  isDepartmentAdmin:
-
 kathia:
   email: kathia@test.com
   password: 123456
   username: Kathia
-  department: 1
   position: Gerente
-  isGeneralAdmin: 1
-  isDepartmentAdmin: 1
+  isGeneralAdmin: true
+  isDepartmentAdmin: true
 
 pejuan:
   email: pejuan@test.com
@@ -33,8 +14,8 @@ pejuan:
   username: Pejuan 
   department: 2
   position: Secretaria
-  isGeneralAdmin: 0
-  isDepartmentAdmin: 0
+  isGeneralAdmin: false
+  isDepartmentAdmin: false
 
 kelvin:
   email: kelvin@test.com
@@ -42,8 +23,8 @@ kelvin:
   username: kelvin
   department: 3
   position: Contadora
-  isGeneralAdmin: 0
-  isDepartmentAdmin: 0
+  isGeneralAdmin: false
+  isDepartmentAdmin: false
 
 hernandez:
   email: hernandez@test.com
@@ -51,5 +32,5 @@ hernandez:
   username: hernandez
   department: 3
   position: Gerente
-  isGeneralAdmin: 0
-  isDepartmentAdmin: 1
+  isGeneralAdmin: false
+  isDepartmentAdmin: true

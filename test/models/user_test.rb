@@ -4,14 +4,15 @@ class UserTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
-  test "User without email" do
-  	user = User.new
-  	assert_not user.save, "Saved user without email"
+  test "create user" do
+  	user = User.new :email => users(:kathia).email,
+                    :password => users(:kathia).password,
+                    :username => "Kathia 2",
+                    :department => nil,
+                    :position => users(:kathia).position,
+                    :isGeneralAdmin => users(:kathia).isGeneralAdmin,
+                    :isDepartmentAdmin => users(:kathia).isDepartmentAdmin
+  	assert user.save , "Se guardo un usuario sin department"
   end
-  test "should report error" do
-	  # some_undefined_variable is not defined elsewhere in the test case
-	  assert_raises(NameError) do
-	    some_undefined_variable
-	  end
-  end
+
 end
