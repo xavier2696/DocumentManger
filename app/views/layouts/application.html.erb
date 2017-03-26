@@ -28,17 +28,18 @@
                 <li><%= link_to "Estados", statuses_path %></li>
                 <li><%= link_to "Usuarios", users_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Nuevo Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
+
               <% elsif current_user.isDepartmentAdmin? %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Nuevo Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% else %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Nuevo Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% end %>
               <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %></li>  
             </ul>
