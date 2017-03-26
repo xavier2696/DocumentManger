@@ -3,6 +3,7 @@ class WelcomeController < ApplicationController
     
     def index
     	@documents = Document.all
+    	@documents = Document.order('created_at DESC')
     end
 
     def getAmountSent

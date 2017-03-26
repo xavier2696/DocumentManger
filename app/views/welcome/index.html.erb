@@ -1,226 +1,52 @@
-<br>
-<div class="row">
-	<div class="col s6">
-		<div class="card-panel white">
-			<h5>Documentos Enviados</h5>
-			<ul class="collapsible" data-collapsible="accordion">
-				<% @convID = 0 %> 
-				<% @counter = 0 %>
-				<% @documents.each do |document| %>
-					<% if current_user.id == document.sender_id && document.isSenderPrivate %>
-						<% if @convID == document.conversationId %>
-							<span>Id: <%= document.id %>
-							<span>ConvId: <%= document.conversationId %>
-							<span>Subject: <%= document.subject %> </span>
-							<span>To: <%= document.receiver_id %></span>
-							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %>
-							<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-							<%@convID = document.conversationId %>
-						<% else %>
-							<%if @counter > 0 %>
-								</div>
-								</li>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><br>
-										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %>
-								<%@convID = document.conversationId %>
-							<% else %>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%if document.conversationId == nil %>
-									<% @convID = document.id %>
-								<% else %>
-									<% @convID = document.conversationId %>
-								<% end %>
-							<% end %>
-						<% end %>
-						<% @counter = @counter + 1 %>
-					<% end %>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-
-	<div class="col s6">
-		<div class="card-panel white">
-			<h5>Documentos Recibidos</h5>
-			<ul class="collapsible" data-collapsible="accordion">
-				<% @convID = 0 %> 
-				<% @counter2 = 0 %>
-				<% @documents.each do |document| %>					
-					<% if current_user.id == document.receiver_id && document.isReceiverPrivate %>
-						<% if @convID == document.conversationId %>
-							<span>Id: <%= document.id %>
-							<span>ConvId: <%= document.conversationId %>
-							<span>Subject: <%= document.subject %> </span>
-							<span>To: <%= document.receiver_id %></span>
-							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-							<%if @counter2 == getAmountRecieved()-1 %>
-								</div></li>
-							<% end %>
-							<%@convID = document.conversationId %>
-						<% else %>
-							<%if @counter2 > 0 %>
-								</div>
-								</li>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%@convID = document.conversationId %>
-							<% else %>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%if document.conversationId == nil %>
-									<% @convID = document.id %>
-								<% else %>
-									<% @convID = document.conversationId %>
-								<% end %>
-							<% end %>
-						<% end %>
-						<% @counter2 = @counter2 + 1 %>
-					<% end %>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col s6">
-		<div class="card-panel white">
-			<h5>Documentos Publicos Enviados del Departamento</h5>
-			<ul class="collapsible" data-collapsible="accordion">
-				<% @convID = 0 %> 
-				<% @counter2 = 0 %>
-				<% @documents.each do |document| %>					
-					<% if current_user.id == document.sender_id && !document.isSenderPrivate %>
-						<% if @convID == document.conversationId %>
-							<span>Id: <%= document.id %>
-							<span>ConvId: <%= document.conversationId %>
-							<span>Subject: <%= document.subject %> </span>
-							<span>To: <%= document.receiver_id %></span>
-							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-							<%if @counter2 == getAmountRecieved()-1 %>
-								</div></li>
-							<% end %>
-							<%@convID = document.conversationId %>
-						<% else %>
-							<%if @counter2 > 0 %>
-								</div>
-								</li>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%@convID = document.conversationId %>
-							<% else %>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%if document.conversationId == nil %>
-									<% @convID = document.id %>
-								<% else %>
-									<% @convID = document.conversationId %>
-								<% end %>
-							<% end %>
-						<% end %>
-						<% @counter2 = @counter2 + 1 %>
-					<% end %>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-
-	<div class="col s6">
-		<div class="card-panel white">
-			<h5>Documentos Publicos Recibidos del Departamento</h5>
-			<ul class="collapsible" data-collapsible="accordion">
-				<% @convID = 0 %> 
-				<% @counter2 = 0 %>
-				<% @documents.each do |document| %>					
-					<% if current_user.id == document.receiver_id && !document.isReceiverPrivate %>
-						<% if @convID == document.conversationId %>
-							<span>Id: <%= document.id %>
-							<span>ConvId: <%= document.conversationId %>
-							<span>Subject: <%= document.subject %> </span>
-							<span>To: <%= document.receiver_id %></span>
-							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %>
-							<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-							<%if @counter2 == getAmountRecieved()-1 %>
-								</div></li>
-							<% end %>
-							<%@convID = document.conversationId %>
-						<% else %>
-							<%if @counter2 > 0 %>
-								</div>
-								</li>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %>
-										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
-								<%@convID = document.conversationId %>
-							<% else %>
-								<li>
-									<div class="collapsible-header"><%= document.subject %></div>
-									<div class="collapsible-body">
-										<span>Id: <%= document.id %>
-										<span>ConvId: <%= document.conversationId %>
-										<span>To: <%= document.receiver_id %></span>
-										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %>
-										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %>
-								<%if document.conversationId == nil %>
-									<% @convID = document.id %>
-								<% else %>
-									<% @convID = document.conversationId %>
-								<% end %>
-							<% end %>
-						<% end %>
-						<% @counter2 = @counter2 + 1 %>
-					<% end %>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-</div>
+ <div class="row">
+ 	<div class="col s12">
+ 		<div class="card-panel white">
+ 			<ul class="collapsible" data-collapsible="accordion">
+ 				<% @currentConvID = 0 %>
+ 				<% @documents.each do |document| %>
+ 					<% if current_user.id == document.receiver_id %>
+ 						<% if @currentConvID != document.conversationId %>
+ 							<% @currentConvID = document.conversationId %>
+ 							<li>
+ 								<div class="collapsible-header"><%=document.subject%></div>
+ 								<div class="collapsible-body">
+ 									<ul class="collection">
+ 										<li class="collection-item avatar">
+ 											<i class="material-icons circle">folder</i>
+ 											<span class="title"><%=document.subject%></span><br>
+ 											<span>De: <%=User.find(document.sender_id).email %></span><br>
+ 											<span>Para: <%=User.find(document.receiver_id).email %></span><br><br>
+ 											<span><%=document.content%></span>
+ 											<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
+ 												<i class="material-icons">send</i>
+ 											<% end %>
+ 										</li>	
+ 										<% @documents.each do |document2| %>
+ 											<% if document2.id != document.id %>
+ 												<% if current_user.id == document2.sender_id || current_user.id == document2.receiver_id %>
+ 													<% if @currentConvID == document2.conversationId %>
+ 														<li class="collection-item avatar">
+ 															<i class="material-icons circle">folder</i>
+ 															<span class="title"><%=document.subject%></span><br>
+ 															<span>De: <%=User.find(document2.sender_id).email %></span><br>
+ 															<span>Para: <%=User.find(document2.receiver_id).email %></span><br><br>
+ 															<span><%=document2.content%></span>
+ 															<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
+ 																<i class="material-icons">send</i>
+ 															<% end %>
+ 														</li>
+ 													<% end %>
+ 												<% end %>
+ 											<% end %>
+ 										<% end %>
+ 									</ul>
+ 								</div>
+ 							</li>
+ 						<% end %>
+ 					<% end %>
+ 					
+ 				<% end %>
+  			</ul>
+ 		</div>
+ 	</div>
+ </div>
