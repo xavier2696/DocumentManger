@@ -32,6 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         format.html { redirect_to :controller => "/welcome", :action => "index", notice: 'User was successfully created.Please Sign In' }
         format.json { render :show, status: :created, location: @user }
       else
+        @departments = Department.all
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end

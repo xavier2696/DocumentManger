@@ -23,7 +23,7 @@ div::-webkit-scrollbar-thumb {
 }
 
 .login-icons {
-    color: #EA2E49;
+    color: #bb243a;
 }
 
 input:not([type]),
@@ -39,11 +39,11 @@ input[type=tel],
 input[type=number],
 input[type=search],
 textarea.materialize-textarea {
-    border-bottom: 1px solid #EA2E49;
+    border-bottom: 1px solid #bb243a;
 }
 
 .input-field label {
-    color: #EA2E49;
+    color: #bb243a;
 }
 
 input:not([type]),
@@ -59,7 +59,7 @@ input[type=tel],
 input[type=number],
 input[type=search],
 textarea.materialize-textarea {
-    border-bottom: 1px solid #EA2E49;
+    border-bottom: 1px solid #bb243a;
 }
 
 input:not([type]):focus:not([readonly]),
@@ -122,7 +122,10 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
     margin-left: auto;
     margin-right: auto;
 }
-
+.login-container p.flash-alert {
+    color: red;
+    font-weight: 900;
+}
 .login-header {
     height: 50px;
     background-color: #333745;
@@ -146,11 +149,11 @@ textarea.materialize-textarea:focus:not([readonly]) + label {
 .dropdown-content li > a,
 .dropdown-content li > span,
 .select-wrapper span.caret {
-    color: #EA2E49;
+    color: #bb243a;
 }
 
 .select-wrapper input.select-dropdown {
-    border-bottom: 1px solid #EA2E49;
+    border-bottom: 1px solid #bb243a;
 }
 .links-devise {
     margin-left: 50px;
