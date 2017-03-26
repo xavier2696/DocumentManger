@@ -47,11 +47,11 @@
         <%= f.label :password_confirmation,"Confirmación de Contraseña"%><br />
         <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
-      <div class="field">
+      <div class="field" style="display: none;">
         <%= f.check_box :isGeneralAdmin%>
         <%= f.label :isGeneralAdmin,"Administrador General"%><br />
       </div>
-      <div class="field">
+      <div class="field" style="display: none;">
         <%= f.check_box :isDepartmentAdmin%>
         <%= f.label :isDepartmentAdmin,"Administrador de Departamento" %><br />
       </div>
