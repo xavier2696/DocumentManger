@@ -16,4 +16,40 @@ two:
   department: two
   position: MyString
   isGeneralAdmin: 
-  isDepartmentAdmin: 
+  isDepartmentAdmin:
+
+kathia:
+  email: kathia@test.com
+  password: 123456
+  username: Kathia
+  department: 1
+  position: Gerente
+  isGeneralAdmin: 1
+  isDepartmentAdmin: 1
+
+pejuan:
+  email: pejuan@test.com
+  password: 123456
+  username: Pejuan 
+  department: 2
+  position: Secretaria
+  isGeneralAdmin: 0
+  isDepartmentAdmin: 0
+
+kelvin:
+  email: kelvin@test.com
+  password: 123456
+  username: kelvin
+  department: 3
+  position: Contadora
+  isGeneralAdmin: 0
+  isDepartmentAdmin: 0
+
+hernandez:
+  email: hernandez@test.com
+  password: 123456
+  username: hernandez
+  department: 3
+  position: Gerente
+  isGeneralAdmin: 0
+  isDepartmentAdmin: 1
