@@ -14,7 +14,8 @@
 							<span>Subject: <%= document.subject %> </span>
 							<span>To: <%= document.receiver_id %></span>
 							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><br>
+							<%= link_to "Mostrar", document_path(document) %>
+							<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 							<%@convID = document.conversationId %>
 						<% else %>
 							<%if @counter > 0 %>
@@ -27,7 +28,8 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Show", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><br>
+										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %>
 								<%@convID = document.conversationId %>
 							<% else %>
 								<li>
@@ -37,7 +39,7 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Show", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%if document.conversationId == nil %>
 									<% @convID = document.id %>
 								<% else %>
@@ -66,7 +68,7 @@
 							<span>Subject: <%= document.subject %> </span>
 							<span>To: <%= document.receiver_id %></span>
 							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><br>
+							<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 							<%if @counter2 == getAmountRecieved()-1 %>
 								</div></li>
 							<% end %>
@@ -82,7 +84,7 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Show", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%@convID = document.conversationId %>
 							<% else %>
 								<li>
@@ -92,7 +94,7 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Show", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%if document.conversationId == nil %>
 									<% @convID = document.id %>
 								<% else %>
@@ -123,7 +125,7 @@
 							<span>Subject: <%= document.subject %> </span>
 							<span>To: <%= document.receiver_id %></span>
 							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><br>
+							<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 							<%if @counter2 == getAmountRecieved()-1 %>
 								</div></li>
 							<% end %>
@@ -139,7 +141,7 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%@convID = document.conversationId %>
 							<% else %>
 								<li>
@@ -149,7 +151,7 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %><%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%if document.conversationId == nil %>
 									<% @convID = document.id %>
 								<% else %>
@@ -178,7 +180,8 @@
 							<span>Subject: <%= document.subject %> </span>
 							<span>To: <%= document.receiver_id %></span>
 							<span>Body: <%= document.content %></span>
-							<%= link_to "Mostrar", document_path(document) %><br>
+							<%= link_to "Mostrar", document_path(document) %>
+							<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 							<%if @counter2 == getAmountRecieved()-1 %>
 								</div></li>
 							<% end %>
@@ -194,7 +197,8 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %>
+										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %><br>
 								<%@convID = document.conversationId %>
 							<% else %>
 								<li>
@@ -204,7 +208,8 @@
 										<span>ConvId: <%= document.conversationId %>
 										<span>To: <%= document.receiver_id %></span>
 										<span>Body: <%= document.content %></span>
-										<%= link_to "Mostrar", document_path(document) %><br>
+										<%= link_to "Mostrar", document_path(document) %>
+										<%= link_to "Responder", new_document_path({:conversationId => document.conversationId}) %>
 								<%if document.conversationId == nil %>
 									<% @convID = document.id %>
 								<% else %>

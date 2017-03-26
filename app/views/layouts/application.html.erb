@@ -12,6 +12,7 @@
   <body>
 
     <% if user_signed_in? %>
+
       <div class="page-container">
         <nav>
           <div class="nav-wrapper">
@@ -20,25 +21,28 @@
                 <%= image_tag("logo2.png",:class => "logo_navbar" )%>
               </div>
             </a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
               <% if current_user.isGeneralAdmin? %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
+                <li><%= link_to "Usuarios", users_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Nuevo Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
+
               <% elsif current_user.isDepartmentAdmin? %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
                 <li><%= link_to "Estados", statuses_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Nuevo Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% else %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Documentos", documents_path %></li>
-                <li><%= link_to "Crear Documento", new_document_path %></li>
+                <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% end %>
-              <li><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+              <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %></li>  
             </ul>
           </div>
         </nav>
@@ -47,5 +51,33 @@
         <%= yield %>
       </div>
     </div>
+
+
+
+    <%if user_signed_in? %>
+      <ul class="side-nav" id="mobile-demo">
+        <% if current_user.isGeneralAdmin? %>
+          <li><%= link_to "Dashboard", root_path %></li>
+          <li><%= link_to "Departamentos", departments_path %></li>
+          <li><%= link_to "Estados", statuses_path %></li>
+          <li><%= link_to "Usuarios", users_path %></li>
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right" >arrow_drop_down</i></a></li>
+        <% elsif current_user.isDepartmentAdmin? %>
+          <li><%= link_to "Dashboard", root_path %></li>
+          <li><%= link_to "Departamentos", departments_path %></li>
+          <li><%= link_to "Estados", statuses_path %></li>
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right">arrow_drop_down</i></a></li>
+        <% else %>
+          <li><%= link_to "Dashboard", root_path %></li>
+          <!-- Dropdown Trigger -->
+          <li><a class="dropdown-button" data-activates="dropdown1">Documentos<i class="material-icons right">arrow_drop_down</i></a></li>
+        <% end %>
+        <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %></li> 
+      </ul>
+    <% end %>
+
+    
   </body>
 </html>

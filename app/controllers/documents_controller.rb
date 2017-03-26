@@ -5,7 +5,6 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
-
   end
 
   # GET /documents/1
@@ -67,7 +66,12 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
+    @documents = Document.all
     @document = Document.new(document_params)
+
+    if !@documents.count 
+      @document.conversationId = 1
+    end
     @receiverStatus = Status.where(department_id: User.find(@document.receiver_id).department_id, description: "Nuevo")
     if(@receiverStatus != nil && @receiverStatus != 0) 
       @document.receiverStatus_id = @receiverStatus[0].id
@@ -75,6 +79,11 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.receiver_id != @document.sender_id 
         if @document.save
+          if params[:document][:archive_data] != nil
+            params[:document][:archive_data].each do |file|
+              @document.archives.create!(:archive => file)
+          end
+          end
           format.html { redirect_to @document, notice: 'Document was successfully created.' }
           format.json { render :show, status: :created, location: @document }
         else
@@ -131,8 +140,28 @@ class DocumentsController < ApplicationController
           end
         }
       end
+      ##nuevo
+      
     end
   end
+
+  def getNextConvID
+    @documents = Document.all
+    nextConvID = 0
+    if @documents.count
+      @documents.each do |document|
+        if document.conversationId > nextConvID
+          nextConvID = document.conversationId
+        end
+      end
+      nextConvID = nextConvID + 1
+      return nextConvID
+    else
+      return 1
+    end
+  end
+
+  helper_method :getNextConvID
 
   # PATCH/PUT /documents/1
   # PATCH/PUT /documents/1.json
@@ -166,6 +195,6 @@ class DocumentsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def document_params
-    params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :tags, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id)
+    params.require(:document).permit(:documentCode, :sender_id, :receiver_id, :creator_id, :subject, :date, :content, :conversationId, :isSenderPrivate, :senderStatus_id, :isReceiverPrivate, :receiverStatus_id, :picture, tag_ids:[], :archive_data => [])
   end
 end

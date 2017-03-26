@@ -14,3 +14,7 @@ module DocumentManager
   end
 end
 
+I18n.config.available_locales = :es
+I18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
+ 
+I18n.default_locale = :es

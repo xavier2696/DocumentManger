@@ -28,3 +28,21 @@
       	return true
       toastr.warning(message)
       false
+
+ @submitLoginEvent = ->
+    $('.new_user').submit ->
+      validateForm = undefined
+
+      validateForm = ->
+        if $('#user_email').val() == ''
+          return 'Ingrese un correo.'
+        if $('#user_email').val().match(new RegExp(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/g)) == null
+          return 'El formato del correo no es correcto.'
+        if $('#user_password').val() == ''
+          return 'Ingrese una contraseña'
+        return ''
+      message = validateForm()
+      if message == ''
+        return true
+      toastr.warning(message)
+      false

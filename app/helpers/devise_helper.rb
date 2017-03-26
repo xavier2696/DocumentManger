@@ -3,12 +3,9 @@ module DeviseHelper
     return "" if resource.errors.empty?
 
     messages = resource.errors.full_messages.map { |msg| content_tag(:li, msg) }.join
-    sentence = "No se ha conseguido crear el usuario."
-
     html = <<-HTML
-    <div id="error_explanation">
-      <h2>#{sentence}</h2>
-      <ul>#{messages}</ul>
+    <div class="alert alert-error alert-danger"> 
+      #{messages}
     </div>
     HTML
 

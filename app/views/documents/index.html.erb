@@ -59,4 +59,4 @@
 
 <br>
 
-<%= link_to 'New Document', new_document_path %>
+<%= link_to 'New Document', new_document_path({:conversationId => getNextConvID()}) %>

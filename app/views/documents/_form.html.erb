@@ -85,25 +85,19 @@
       <%= f.label :content, "Contenido" %>
       <%= f.text_area :content,class: "materialize-textarea document_content", :required => true %>
     </div>
-    <div class="file-field input-field">
-      <div class="actions">
-        <div class="waves-effect waves-light btn">
-          <i class="material-icons">attach_file</i>
-          <input type="file" multiple>
-        </div>
-      </div>
-      <div class="file-path-wrapper">
-        <input class="file-path validate" type="text">
-      </div>
-    </div>
-    <div class="input-field">
-      <i class="material-icons login-icons prefix">label</i>
-      <%= f.label :tags %>
-      <%= f.text_field :tags, class: "tag-input" %>
-    </div>
+    
+
     <div class="tag-elements">
     </div>
-  
+  <div>
+    <%= f.label "Tags" %><br/>
+    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tagName do |b| %>
+    <div class="collection-check-box">
+      <%= b.check_box %>
+      <%= b.label %>
+    </div>
+  <% end %>
+  </div>
   <div>
     <%= f.label :isSenderPrivate, "Privado para remitente?" %>
     <%= f.select :isSenderPrivate, options_for_select([['No', false], ['Si', true]])%>
@@ -118,9 +112,13 @@
     <%= f.select :isReceiverPrivate, options_for_select([['No', false], ['Si', true]])%>
   </div>
   
-  <div class="field">
+  <div class="field" style="display: none;">
      <%= f.label :conversationI, "Conversacion" %>
-    <%= f.collection_select :conversationId, Document.all, :id, :documentCode %>
+    <%= f.text_field :conversationId, :value => params[:conversationId] %>
+  </div>
+  <div>
+    <%= f.label :archives %>
+    <%= f.file_field :archive_data, multiple: true, accept: "image/jpeg, image/jpg, image/gif, image/png" %>
   </div>
   <div class="actions">
     <%= button_tag( :class => "waves-effect waves-light btn") do %>

@@ -65,8 +65,17 @@
   </p>
   <p>
     <strong class="documentLabel">Tags:</strong>
-    <%= @document.tags %>
+    </br>
+    <% a = @document.tag_ids %>
+    <% for item in a %>
+      <% Tag.all.each do |tag| %>
+        <% if tag.id == item %>
+          <%= tag.tagName %><br/>
+        <% end %>
+      <% end %>
+    <% end %>
   </p>
+  
 </div>
 <div class="col s12 m4 l6">
   <h5>Estados <i class="material-icons login-icons prefix">info_outline</i></h5>
@@ -134,7 +143,16 @@
     <strong class="documentLabel">Privado para receptor:</strong>
     <%= @document.isReceiverPrivate %>
   </p>
-
+  <p>
+    <div class="carousel">
+      <% docID = @document.id %>
+      <% Archive.all.each do |file| %>
+        <% if file.document_id == docID %>
+          <a class="carousel-item"><%= image_tag file.archive %><br/></a>
+        <% end %>
+      <% end %>
+    </div>
+  </p>
  
 
 </div>
@@ -199,7 +217,7 @@
     <strong>Receiverstatus:</strong>
     <%= @document.receiverStatus.description %>
   </p>-->
-
+    
   
   <%= link_to 'Back', documents_path %>
 

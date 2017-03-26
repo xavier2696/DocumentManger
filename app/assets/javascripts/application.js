@@ -17,13 +17,16 @@
 //= require_tree .
 //= require toastr_rails
 $(document).on('turbolinks:load', function() {
- $('select').material_select();
-   $('.datepicker').pickadate({
+  $(".button-collapse").sideNav();
+  $(".dropdown-button").dropdown();
+  $('select').material_select();
+  $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15 // Creates a dropdown of 15 years to control year
   });
-        
+
 });
+
 toastr.options = {
   "debug": false,
   "newestOnTop": false,
@@ -40,3 +43,7 @@ toastr.options = {
   "showMethod": "fadeIn",
   "hideMethod": "fadeOut"
 }
+
+$(document).ready(function() {
+  $('.carousel').carousel();
+});
