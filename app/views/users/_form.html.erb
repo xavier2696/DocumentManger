@@ -40,11 +40,11 @@
               <%= f.label "Cargo" %>
               <%= f.text_field :position, :disabled=> true  %>
             </div>
-            <div class="field col s6">
+            <div class="field col s6" style="display: hidden;">
               <%= f.check_box :isGeneralAdmin, id:"isGeneralAdmin" %>
               <%= f.label "Administrador General", for:"isGeneralAdmin", id:"isGeneralAdmin" %>
             </div><br>
-            <div class="field col s6">
+            <div class="field col s6" style="display: hidden;">
               <%= f.check_box :isDepartmentAdmin, id:"isDepartmentAdmin" %>
               <%= f.label "Administrador de Departamento", for:"isDepartmentAdmin", id:"isDepartmentAdmin" %>
             </div>
