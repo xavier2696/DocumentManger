@@ -40,9 +40,7 @@
               No
               <% end %>
             </td>
-            <td><%= link_to 'Detalles', user %></td>
             <td><%= link_to 'Cambiar Roles', edit_user_path(user) %></td>
-            <td><%= link_to 'Eliminar', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
           </tr>
           <% end %>
         </tbody>
