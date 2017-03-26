@@ -5,6 +5,7 @@ kathia:
   password: 123456
   username: Kathia
   position: Gerente
+  department: dep1
   isGeneralAdmin: true
   isDepartmentAdmin: true
 
@@ -12,7 +13,7 @@ pejuan:
   email: pejuan@test.com
   password: 123456
   username: Pejuan 
-  department: 2
+  department: dep2
   position: Secretaria
   isGeneralAdmin: false
   isDepartmentAdmin: false
@@ -21,7 +22,7 @@ kelvin:
   email: kelvin@test.com
   password: 123456
   username: kelvin
-  department: 3
+  department: dep3
   position: Contadora
   isGeneralAdmin: false
   isDepartmentAdmin: false
@@ -30,7 +31,7 @@ hernandez:
   email: hernandez@test.com
   password: 123456
   username: hernandez
-  department: 3
+  department: dep3
   position: Gerente
   isGeneralAdmin: false
   isDepartmentAdmin: true

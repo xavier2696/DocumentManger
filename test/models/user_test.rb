@@ -5,14 +5,23 @@ class UserTest < ActiveSupport::TestCase
   #   assert true
   # end
   test "create user" do
-  	user = User.new :email => users(:kathia).email,
-                    :password => users(:kathia).password,
-                    :username => "Kathia 2",
-                    :department => nil,
-                    :position => users(:kathia).position,
-                    :isGeneralAdmin => users(:kathia).isGeneralAdmin,
-                    :isDepartmentAdmin => users(:kathia).isDepartmentAdmin
-  	assert user.save , "Se guardo un usuario sin department"
+    
+    department_id = departments(:dep2).id
+
+    Rails::logger.debug "Departamento"
+    Rails::logger.debug department_id
+  	user = User.new(:email => "KathiaB@gmail.com",
+                    :password => "123456",
+                    :username => "Kathia Barahona",
+                    :department_id => department_id,
+                    :position => "Admin",
+                    :isGeneralAdmin => true,
+                    :isDepartmentAdmin => true)
+
+  	assert user.save
+    user_copy = User.find(user.id)
+    assert_equal user.username, user_copy.username
+    assert user.destroy
   end
 
 end

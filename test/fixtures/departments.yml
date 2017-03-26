@@ -1,8 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-1:
+dep1:
   departmentName: Economia
-2:
+dep2:
   departmentName: Contabilidad
-3:
+dep3:
   departmentName: TI
