@@ -79,8 +79,10 @@ class DocumentsController < ApplicationController
     respond_to do |format|
       if @document.receiver_id != @document.sender_id 
         if @document.save
-          params[:document][:archive_data].each do |file|
-            @document.archives.create!(:archive => file)
+          if params[:document][:archive_data] != nil
+            params[:document][:archive_data].each do |file|
+              @document.archives.create!(:archive => file)
+          end
           end
           format.html { redirect_to @document, notice: 'Document was successfully created.' }
           format.json { render :show, status: :created, location: @document }
