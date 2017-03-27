@@ -46,11 +46,11 @@
  															<span>Estado Receptor: <%=Status.find(document2.receiverStatus_id).description %></span><br><br>
  															<span><%=document2.content%></span><br>
  															<%= link_to 'Detalle', document2 %>
- 															<% if current_user.id == document2.receiver_id%>
+ 															<!--<% if current_user.id == document2.receiver_id%>
 	 															<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
 	 																<i class="material-icons">send</i>
 	 															<% end %>
- 															<% end %>
+ 															<% end %>-->
  														</li>
  													<% end %>
  												<% end %>
