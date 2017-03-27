@@ -41,7 +41,7 @@
                 <li><%= link_to "Tags", tags_path %></li>
                 <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% end %>
-              <li><a class="dropdown-button" data-activates="dropdown1"> <%= current_user.email %></a></li>
+              <li><a class="dropdown-button" data-activates="dropdown1"> <%= current_user.email %><i style="margin-top:-25px;"class="material-icons right">arrow_drop_down</i></a></li>
               <ul id="dropdown1" class="dropdown-content">
                 <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete, style:"color:black !important;" %>
               </ul>
