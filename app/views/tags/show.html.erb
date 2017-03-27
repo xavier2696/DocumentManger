@@ -5,10 +5,75 @@
   <%= @tag.tagName %>
 </p>
 
-<p>
-  <strong>Department:</strong>
-  <%= @tag.department_id %>
-</p>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Documentcode</th>
+      <th>Senderemail</th>
+      <th>Receiver Email</th>
+      <th>Creator Email</th>
+      <th>Subject</th>
+      <th>Date</th>
+      <th>Content</th>
+      <th>Tags</th>
+      <th>Conversationid</th>
+      <th>Senderstatus</th>
+      <th>Receiverstatus</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
+  <tbody>
+
+    <% Document.all.each do |document| %>
+        <% a = document.tag_ids %>
+        <% currentTag = @tag.id %>
+        <% for item in a %>
+          <% if currentTag == item %>
+    
+            <% bandera = false %>
+      <% if document.isReceiverPrivate && current_user.email == document.receiver.email || !document.isReceiverPrivate && current_user.department_id == document.receiver.department_id %>
+        <% bandera = true %>
+      <% end %>
+      <% if bandera || document.isSenderPrivate && current_user.email == document.sender.email || !document.isSenderPrivate && current_user.department_id == document.sender.department_id%>
+        <tr>
+          <td><%= document.id %>
+          <td><%= document.documentCode %></td>
+          <% if document.isSenderPrivate and current_user.email != document.sender.email%>
+            <td>Private</td>
+          <% else %>
+            <td><%= document.sender.email %></td>
+          <% end %>
+          <% if document.isReceiverPrivate and current_user.email != document.receiver.email%>
+            <td>Private</td>
+          <% else %>
+            <td><%= document.receiver.email %></td>
+          <% end %>
+          <td><%= document.creator.email %></td>
+          <td><%= document.subject %></td>
+          <td><%= document.date %></td>
+          <td><%= document.content %></td>
+          <td><% a2 = document.tag_ids %>
+              <% for item2 in a2 %>
+                <% Tag.all.each do |tag2| %>
+                  <% if tag2.id == item2 %>
+                    <%= tag2.tagName %><br/>
+                  <% end %>
+                <% end %>
+              <% end %></td>
+          <td><%= document.conversationId %></td>
+          <td><%= document.senderStatus.description %></td>
+          <td><%= document.receiverStatus.description %></td>
+          <td><%= link_to 'Show', document %></td>
+          <td><%= link_to 'Destroy', document, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+            
+          <% end %>
+        <% end %>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
 <%= link_to 'Back', tags_path %>
