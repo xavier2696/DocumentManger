@@ -9,8 +9,10 @@
     
       <% @statuses.each do |status| %>
       <div class="card statusDetail">
+        <p class="p">
         <%= status.description %> <br>
         Departamento: <%= status.department.departmentName %>
+        </p>
         <!--<%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %>-->
       </div>
       <% end %>

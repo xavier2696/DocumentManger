@@ -10,7 +10,8 @@
     
       <% @departments.each do |department| %>
       <div class="card departmentDetail">
-        <%= department.departmentName %>
+
+        <p class="p"><%= department.departmentName %></p>
         <!--<%= link_to 'Eliminar', department, method: :delete, data: { confirm: 'Esta seguro?' } %>-->
       </div>
       <% end %>
