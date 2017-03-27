@@ -91,7 +91,7 @@
     </div>
   <div>
     <%= f.label "Tags" %><br/>
-    <%= f.collection_check_boxes :tag_ids, Tag.all, :id, :tagName do |b| %>
+    <%= f.collection_check_boxes :tag_ids, Tag.where("department_id = :depid",{depid: current_user.department_id.to_s}), :id, :tagName do |b| %>
     <div class="collection-check-box">
       <%= b.check_box %>
       <%= b.label %>
