@@ -1,39 +1,55 @@
  <div class="row">
  	<div class="col s12">
- 		<h3 class="center">Bandeja de Entrada</h3>
+ 		<h3 class="center">Documentos</h3>
  		<div class="card-panel white">
  			<ul class="collapsible" data-collapsible="accordion">
  				<% @currentConvID = 0 %>
  				<% @documents.each do |document| %>
- 					<% if current_user.id == document.receiver_id %>
- 						<% if @currentConvID != document.conversationId %>
+ 				
+
+ 					<% if ((current_user.id == document.receiver_id and document.isReceiverPrivate) or (current_user.id == document.sender_id and document.isSenderPrivate)) or ((current_user.department.id == User.find(document.receiver_id).department.id and !document.isReceiverPrivate) or(current_user.department.id == User.find(document.sender_id).department.id and !document.isSenderPrivate))%>
+ 						<% if @currentConvID != document.conversationId and !@conversationIdsListed.include?(document.conversationId)%>
  							<% @currentConvID = document.conversationId %>
+ 							<% @conversationIdsListed.push(@currentConvID) %>
  							<li>
- 								<div class="collapsible-header"><%=document.subject%></div>
+
+ 								<div class="collapsible-header"><% if current_user.id == document.receiver_id %><i class="material-icons">call_received</i><% else %><%if current_user.id == document.sender_id %><i class="material-icons">call_made</i><% end %><% end %><%=document.subject%>
+ 								
+ 								</div>
  								<div class="collapsible-body">
  									<ul class="collection">
  										<li class="collection-item avatar">
  											<i class="material-icons circle">folder</i>
  											<span class="title"><%=document.subject%></span><br>
  											<span>De: <%=User.find(document.sender_id).email %></span><br>
- 											<span>Para: <%=User.find(document.receiver_id).email %></span><br><br>
- 											<span><%=document.content%></span>
- 											<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
- 												<i class="material-icons">send</i>
+ 											<span>Estado Emisor: <%=Status.find(document.senderStatus_id).description %></span><br>
+ 											<span>Para: <%=User.find(document.receiver_id).email %></span><br>
+ 											<span>Estado Receptor: <%=Status.find(document.receiverStatus_id).description %></span><br><br>
+ 											<span><%=document.content%></span><br>
+ 											<%= link_to 'Detalle', document %>
+ 											<% if current_user.id == document.receiver_id%>
+	 											<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
+	 												<i class="material-icons">send</i>
+	 											<% end %>
  											<% end %>
  										</li>	
  										<% @documents.each do |document2| %>
  											<% if document2.id != document.id %>
- 												<% if current_user.id == document2.sender_id || current_user.id == document2.receiver_id %>
+ 												<% if ((current_user.id == document2.receiver_id and document2.isReceiverPrivate) or (current_user.id == document2.sender_id and document2.isSenderPrivate)) or ((current_user.department.id == User.find(document2.receiver_id).department.id and !document2.isReceiverPrivate) or(current_user.department.id == User.find(document2.sender_id).department.id and !document2.isSenderPrivate))%>
  													<% if @currentConvID == document2.conversationId %>
  														<li class="collection-item avatar">
  															<i class="material-icons circle">folder</i>
- 															<span class="title"><%=document.subject%></span><br>
+ 															<span class="title"><%=document2.subject%></span><br>
  															<span>De: <%=User.find(document2.sender_id).email %></span><br>
- 															<span>Para: <%=User.find(document2.receiver_id).email %></span><br><br>
- 															<span><%=document2.content%></span>
- 															<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
- 																<i class="material-icons">send</i>
+ 															<span>Estado Emisor: <%=Status.find(document2.senderStatus_id).description %></span><br>
+ 															<span>Para: <%=User.find(document2.receiver_id).email %></span><br>
+ 															<span>Estado Receptor: <%=Status.find(document2.receiverStatus_id).description %></span><br><br>
+ 															<span><%=document2.content%></span><br>
+ 															<%= link_to 'Detalle', document2 %>
+ 															<% if current_user.id == document2.receiver_id%>
+	 															<%= link_to new_document_path({:conversationId => document.conversationId}), class:"secondary-content" do %>
+	 																<i class="material-icons">send</i>
+	 															<% end %>
  															<% end %>
  														</li>
  													<% end %>

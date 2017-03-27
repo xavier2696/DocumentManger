@@ -20,4 +20,5 @@ class Document < ApplicationRecord
   has_many :images
   has_many :archives
   attr_accessor :archive_data
+  
 end
