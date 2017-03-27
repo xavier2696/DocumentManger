@@ -30,7 +30,6 @@
                 <li><%= link_to "Usuarios", users_path %></li>
                 <li><%= link_to "Tags", tags_path %></li>
                 <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
-
               <% elsif current_user.isDepartmentAdmin? %>
                 <li><%= link_to "Dashboard", root_path %></li>
                 <li><%= link_to "Departamentos", departments_path %></li>
@@ -42,8 +41,10 @@
                 <li><%= link_to "Tags", tags_path %></li>
                 <li><%= link_to 'Nuevo Documento', new_document_path({:conversationId => getNextConvID()}) %></li>
               <% end %>
-              <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete %></li>  
-            </ul>
+              <li><a class="dropdown-button" data-activates="dropdown1"> <%= current_user.email %></a></li>
+              <ul id="dropdown1" class="dropdown-content">
+                <li><%= link_to "Cerrar Sesion", destroy_user_session_path, :method => :delete, style:"color:black !important;" %>
+              </ul>
           </div>
         </nav>
       <% end %>
@@ -51,6 +52,8 @@
         <%= yield %>
       </div>
     </div>
+
+
 
 
 
