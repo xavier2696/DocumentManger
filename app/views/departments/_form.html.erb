@@ -1,25 +1,31 @@
-<%= form_for(department) do |f| %>
-  <% if department.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
-
-      <ul>
-      <% department.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+<% if current_user.isDepartmentAdmin || current_user.isGeneralAdmin %>
+  <%= form_for(department) do |f| %>
+    <% if department.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(department.errors.count, "error") %> prohibited this department from being saved:</h2>
+  
+        <ul>
+        <% department.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  
+    <div class="input-field">
+          <i class="material-icons login-icons prefix">description</i>
+          <%= f.label :departmentName, "Nombre del departamento"%>
+          <%= f.text_field :departmentName, :required => true%>
+        </div>
+  
+    <div class="actions">
+      <%= button_tag( :class => "waves-effect waves-light btn") do %>
+        Crear Departamento <i class="material-icons right">send</i>
       <% end %>
-      </ul>
     </div>
   <% end %>
-
-  <div class="input-field">
-        <i class="material-icons login-icons prefix">description</i>
-        <%= f.label :departmentName, "Nombre del departamento"%>
-        <%= f.text_field :departmentName, :required => true%>
-      </div>
-
-  <div class="actions">
-    <%= button_tag( :class => "waves-effect waves-light btn") do %>
-      Crear Departamento <i class="material-icons right">send</i>
-    <% end %>
-  </div>
+  <% else %>
+ <div class="title-container">
+	<h3>No tiene permisos para esto</h3>
+</div>
 <% end %>

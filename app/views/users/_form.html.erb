@@ -1,3 +1,4 @@
+<% if current_user.isDepartmentAdmin || current_user.isGeneralAdmin %>
 <%= form_for(user) do |f| %>
   <% if user.errors.any? %>
     <div id="error_explanation">
@@ -57,4 +58,9 @@
         </div>
       </div>
     </div>
+<% end %>
+<% else %>
+ <div class="title-container">
+	<h3>No tiene permisos para esto</h3>
+</div>
 <% end %>

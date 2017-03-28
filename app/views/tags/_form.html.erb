@@ -1,3 +1,4 @@
+<% if current_user.isDepartmentAdmin || current_user.isGeneralAdmin %>
 <%= form_for(tag) do |f| %>
   <% if tag.errors.any? %>
     <div id="error_explanation">
@@ -33,4 +34,9 @@
       Crear Tag <i class="material-icons right">send</i>
     <% end %>
   </div>
+<% end %>
+<% else %>
+ <div class="title-container">
+	<h3>No tiene permisos para esto</h3>
+</div>
 <% end %>
