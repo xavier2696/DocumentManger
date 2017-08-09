@@ -14,6 +14,8 @@
 
 * git clone git@github.com:nelbr3n/DocumentManager.git
 * cd DocumentManager
-* rails s
+* Required packages: "./install_packages.bash"
+* Required Gems "bundle install"
+* Run it: "rails s"
 
 
