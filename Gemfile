@@ -60,3 +60,6 @@ gem 'toastr_rails'
 gem 'faker', '~> 1.6', '>= 1.6.3'
 
 gem 'yaml_db'
+
+gem "wice_grid", '3.6.0.pre4'
+gem 'font-awesome-sass',  '~> 4.3'
