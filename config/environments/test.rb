@@ -39,4 +39,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.action_controller.permit_all_parameters = true
+  config.action_controller.always_permitted_parameters =  [:current_page, :page, :total_pages, :per_page, :remote, :paginator]
 end

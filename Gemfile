@@ -61,5 +61,7 @@ gem 'faker', '~> 1.6', '>= 1.6.3'
 
 gem 'yaml_db'
 
-gem "wice_grid", '3.6.0.pre4'
+#gem "wice_grid" #, '3.6.0.pre4'
+gem 'wice_grid', '> 3.6', git: 'https://github.com/leikind/wice_grid.git', branch: 'rails3'
 gem 'font-awesome-sass',  '~> 4.3'
+gem 'better_errors'
