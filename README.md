@@ -1,24 +1,21 @@
-# README
+# DocumentManager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+*Cuentas:*
 
-* Ruby version
+* superadmin@test.com / superadmin
+* admin_infor@test.com / admin_infor
+* admin_infra@test.com / admin_infra
 
-* System dependencies
+---
 
-* Configuration
+*Instalacion y ejecucion:*
 
-* Database creation
+* git clone git@github.com:nelbr3n/DocumentManager.git
+* cd DocumentManager
+* Required packages: "./install_packages.bash"
+* Required Gems "bundle install"
+* Run it: "rails s"
 
-* Database initialization
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
