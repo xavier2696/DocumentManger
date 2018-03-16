@@ -51,3 +51,31 @@
     <div class="col s1"></div>
   </div>
 <% end %>
+
+<div class="row">
+  <%= grid(@users_grid) do |g|
+
+  g.column do |user|
+    user.email
+  end
+  g.column do |user|
+    user.username
+  end
+  g.column do |user|
+    user.department.departmentName
+  end
+  g.column do |user|
+    user.position
+  end
+  g.column do |user|
+    user.isGeneralAdmin
+  end
+  g.column do |user|
+    user.isDepartmentAdmin
+  end
+
+  g.column do |user|
+    link_to('Cambiar Roles',  edit_user_path(user))
+  end
+end -%>
+</div>
