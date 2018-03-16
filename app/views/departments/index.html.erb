@@ -19,6 +19,20 @@
   </div>
 </div>
 
+<div class="row">
+  <%= grid(@departments_grid) do |g|
+
+  g.column do |department|
+    department.departmentName
+  end
+
+  g.column do |department|
+    link_to('Edit', edit_department_path(department))
+  end
+end -%>
+</div>
+
+
 <br>
 
 

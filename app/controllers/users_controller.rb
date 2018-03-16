@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    @users_grid = initialize_grid(@users)
+    url_for(params.permit(@users_grid))
+    #url_for(:users_grid)
   end
 
   # GET /users/1
