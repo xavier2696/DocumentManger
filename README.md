@@ -10,12 +10,18 @@
 
 ---
 
-*Instalacion y ejecucion:*
+*Instalación y ejecución:*
 
-* git clone git@github.com:nelbr3n/DocumentManager.git
-* cd DocumentManager
-* Required packages: "./install_packages.bash"
-* Required Gems "bundle install"
-* Run it: "rails s"
+* Obtener y posicionarse:
+> git clone git@github.com:nelbr3n/DocumentManager.git
+> cd DocumentManager
+
+* Si se requieren paquetes y gemas:"
+> ./install_packages.bash
+> bundle install
+
+* Preparar base de datos y ejecutar servidor:
+> rake db:setup
+> rails s
 
 
