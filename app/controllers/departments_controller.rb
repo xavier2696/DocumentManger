@@ -6,8 +6,6 @@ class DepartmentsController < ApplicationController
   def index
     @departments = Department.all
     @departments_grid = initialize_grid(@departments)
-    url_for(params.permit(@departments_grid))
-    #url_for(:departments_grid)
   end
 
   # GET /departments/1
