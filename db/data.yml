@@ -1,0 +1,131 @@
+
+---
+ar_internal_metadata:
+  columns:
+  - key
+  - value
+  - created_at
+  - updated_at
+  records: 
+  - - environment
+    - development
+    - '2017-02-17 00:59:58.758744'
+    - '2017-02-17 00:59:58.758744'
+
+---
+departments:
+  columns:
+  - id
+  - departmentName
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - INFORMATICA
+    - '2017-03-28 01:19:16.939184'
+    - '2017-03-28 01:19:16.939184'
+  - - 2
+    - INFRAESTRUCTURA
+    - '2017-07-24 18:27:15.795276'
+    - '2017-07-24 18:27:15.795276'
+
+---
+statuses:
+  columns:
+  - id
+  - description
+  - department_id
+  - created_at
+  - updated_at
+  records: 
+  - - 1
+    - Nuevo
+    - 2
+    - '2017-07-24 18:27:15.830375'
+    - '2017-07-24 18:27:15.830375'
+  - - 2
+    - PENDIENTE_ASIGNAR
+    - 1
+    - '2017-07-24 20:05:21.490254'
+    - '2017-07-24 20:05:21.490254'
+
+---
+users:
+  columns:
+  - id
+  - email
+  - password
+  - username
+  - department_id
+  - position
+  - isGeneralAdmin
+  - isDepartmentAdmin
+  - created_at
+  - updated_at
+  - encrypted_password
+  - reset_password_token
+  - reset_password_sent_at
+  - remember_created_at
+  - sign_in_count
+  - current_sign_in_at
+  - last_sign_in_at
+  - current_sign_in_ip
+  - last_sign_in_ip
+  records: 
+  - - 1
+    - superadmin@test.com
+    - 
+    - Super Admin
+    - 1
+    - Test
+    - true
+    - false
+    - '2017-03-28 01:20:41.541464'
+    - '2017-08-01 00:46:43.761502'
+    - "$2a$11$c7UYi2dSYZXWQuUQeVFvcuDPqAcBPBkSn.eyFv7BgQ4480u/fqfRG"
+    - 
+    - 
+    - 
+    - 8
+    - '2017-08-01 00:46:43.759947'
+    - '2017-07-24 20:03:31.766653'
+    - "::1"
+    - "::1"
+  - - 2
+    - admin_infor@test.com
+    - 
+    - Admin informatica
+    - 1
+    - Jefe
+    - false
+    - true
+    - '2017-07-24 18:39:23.52005'
+    - '2017-07-24 20:04:11.116641'
+    - "$2a$11$sX5aOyEOWHTJwdUE.ydnPu7EzRwHbtwcwBNNw09qKtusFbAtQlIy2"
+    - 
+    - 
+    - 
+    - 5
+    - '2017-07-24 20:04:11.1152'
+    - '2017-07-24 20:03:03.717263'
+    - "::1"
+    - "::1"
+  - - 3
+    - admin_infra@test.com
+    - 
+    - Admin infraestructura
+    - 2
+    - Jefe
+    - false
+    - true
+    - '2017-07-24 18:40:48.786249'
+    - '2017-07-24 20:03:44.008894'
+    - "$2a$11$FpM1nxMF5DgLkEmsSrPKCutvYUHe.muBjiXhPhbEykH1fFB1PBj82"
+    - 
+    - 
+    - 
+    - 1
+    - '2017-07-24 18:40:59.416372'
+    - '2017-07-24 18:40:59.416372'
+    - "::1"
+    - "::1"
