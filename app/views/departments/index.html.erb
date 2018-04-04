@@ -5,19 +5,24 @@
   <h3>Departamentos</h3>
 
 </div>
+
 <div class="row">
   <div class="col s12 m8 departmentColumn">
-    
-      <% @departments.each do |department| %>
-      <div class="card departmentDetail">
-
-        <p class="p"><%= department.departmentName %></p>
-        <!--<%= link_to 'Eliminar', department, method: :delete, data: { confirm: 'Esta seguro?' } %>-->
-      </div>
-      <% end %>
-    
-  </div>
+    <%= grid(@departments_grid) do |g|
+      buffer='<div class="card departmentDetail">'
+      raw buffer
+        g.column name: 'Departamento', attribute: 'departmentName'
+        g.column do |department|
+          link_to('Edit', edit_department_path(department))
+        end
+        g.column do |department|
+          link_to 'Eliminar', department, method: :delete, data: { confirm: 'Esta seguro?' }
+        end
+      buffer='</div>'
+      raw buffer
+    end -%>
 </div>
+
 
 <br>
 
