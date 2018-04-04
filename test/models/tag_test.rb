@@ -20,7 +20,7 @@ class TagTest < ActiveSupport::TestCase
   test "tagCreate_empty_name" do
     tag_vacio = Tag.new(tagName: tags(:tagvacio).tagName, department_id: tags(:tagvacio).department_id)
     assert !tag_vacio.valid?
-    assert_match /blanco/, tag_vacio.errors[:tagName].to_s
+    assert_match /vacio/, tag_vacio.errors[:tagName].to_s
     # Deberia ser /empty/ o /vacio/, sin embargo: Expected to match "[\"no puede estar en blanco\", \"ya está en uso\"]".
   end
 end
