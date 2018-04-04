@@ -6,5 +6,5 @@ test_model() {
   [ "$?" != "0" ] && exit
 }
 
-test_model department 
-test_model tag
+
+test_model status
