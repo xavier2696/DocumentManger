@@ -5,6 +5,8 @@ class DocumentsController < ApplicationController
   # GET /documents.json
   def index
     @documents = Document.all
+    @documents_grid = initialize_grid(@documents)
+    url_for(params.permit(@documents_grid))
   end
 
   # GET /documents/1

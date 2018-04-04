@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
+
 <div class="title-container">
   <button class="botonCrear waves-effect waves-light btn"><%= link_to 'Nuevo', new_status_path %></button>
   <h3>Estados</h3>
 
 </div>
+
 <div class="row">
   <div class="col s12 m8 statusColumn">
-    
+
       <% @statuses.each do |status| %>
       <div class="card statusDetail">
         <p class="p">
@@ -16,8 +18,24 @@
         <!--<%= link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure?' } %>-->
       </div>
       <% end %>
-    
+
   </div>
+    <div class="col s12 m8 departmentColumn">
+
+    <%= grid(@statuses_grid) do |g|
+      buffer='<div class="card statusDetail">'
+      raw buffer
+        g.column name: 'status.description', attribute: 'status.department.departmentName'
+        g.column do |status|
+          link_to('Edit', edit_status_path(status))
+        end
+        g.column do |status|
+          link_to 'Destroy', status, method: :delete, data: { confirm: 'Are you sure??' }
+        end
+      buffer='</div>'
+      raw buffer
+    end -%>
+</div>
 
 </div>
 
