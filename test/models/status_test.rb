@@ -17,8 +17,10 @@ class StatusTest < ActiveSupport::TestCase
     assert status.destroy
   end
 
-#TO-DO (Hacer funcionar la prueba statusCreate_nil_description,
-# 		creo que no deja hacer el test con la descripcion nula por la base de datos, ya que es requerido el campo)
+#TO-DO: 
+#     1) Descripcion = nula
+#     2) Descripcion = ""
+#     3) Descripcion repetida
 #  test "statusCreate_nil_description" do
 #  	department = Department.new(departmentName: "test2") 
 #    department.save
