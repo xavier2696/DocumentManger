@@ -14,8 +14,10 @@
 //= require materialize-sprockets 
 //= require jquery_ujs
 //= require turbolinks
-//= require_tree .
+//= require wice_grid
 //= require toastr_rails
+//= require_tree .
+
 $(document).on('turbolinks:load', function() {
     $(".button-collapse").sideNav();
     $(".dropdown-button").dropdown();

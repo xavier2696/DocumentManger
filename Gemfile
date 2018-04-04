@@ -7,15 +7,18 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.1'
+# wice_grid - solo trabaja asi
+gem 'rails', '= 5.0.6'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18'
+#gem 'pg', '~> 0.18'
+gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 
-gem 'devise'
+#gem 'devise'
+gem 'devise', '~> 4.4', '>= 4.4.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -45,6 +48,12 @@ gem 'bcrypt', platforms: :ruby
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  gem 'minitest'
+  gem 'minitest-rails'
+  gem 'minitest-reporters'
+  gem 'minitest-around'
+
 end
 
 group :development do
@@ -57,3 +66,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'gon'
 gem 'toastr_rails'
 gem 'faker', '~> 1.6', '>= 1.6.3'
+
+gem 'yaml_db'
+
+# wice_grid - solo trabaja asi
+gem 'wice_grid', '> 3.6', git: 'https://github.com/leikind/wice_grid.git', branch: 'rails3'
+gem 'font-awesome-sass',  '~> 4.3'
+gem 'better_errors'

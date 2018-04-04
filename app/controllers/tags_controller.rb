@@ -5,6 +5,8 @@ class TagsController < ApplicationController
   # GET /tags.json
   def index
     @tags = Tag.all
+    @tags_grid = initialize_grid(@tags)
+    url_for(params.permit(@tags_grid))
   end
 
   # GET /tags/1

@@ -5,6 +5,7 @@ class DepartmentsController < ApplicationController
   # GET /departments.json
   def index
     @departments = Department.all
+    @departments_grid = initialize_grid(@departments)
   end
 
   # GET /departments/1
