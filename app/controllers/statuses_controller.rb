@@ -4,6 +4,9 @@ class StatusesController < ApplicationController
   # GET /statuses.json
   def index
     @statuses = Status.all
+    @statuses_grid = initialize_grid(@statuses)
+    url_for(params.permit(@statuses_grid))
+
   end
 
   # GET /statuses/1
