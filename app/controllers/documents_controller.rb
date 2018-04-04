@@ -1,9 +1,12 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
   # GET /documents
   # GET /documents.json
   def index
     @documents = Document.all
+    @documents_grid = initialize_grid(@documents)
+    url_for(params.permit(@documents_grid))
   end
 
   # GET /documents/1
