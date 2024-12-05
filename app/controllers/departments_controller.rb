@@ -1,10 +1,10 @@
 class DepartmentsController < ApplicationController
   before_action :set_department, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
   # GET /departments
   # GET /departments.json
   def index
     @departments = Department.all
+    @departments_grid = initialize_grid(@departments)
   end
 
   # GET /departments/1

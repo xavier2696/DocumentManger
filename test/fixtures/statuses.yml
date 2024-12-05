@@ -1,9 +1,12 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+zero:
+  description: null
+  department:  informatica
 
 one:
-  description: MyString
-  department: one
+  description: statusOne
+  department:  informatica
 
 two:
-  description: MyString
-  department: two
+  description: statusTwo
+  department:  informatica

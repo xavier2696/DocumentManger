@@ -1,37 +1,38 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-kathia:
-  email: kathia@test.com
-  password: 123456
-  username: Kathia
+user01:
+  email: usuario@usuario.com
+  password: password
+  username: Usuario
   position: Gerente
   department: dep1
   isGeneralAdmin: true
   isDepartmentAdmin: true
 
-pejuan:
-  email: pejuan@test.com
-  password: 123456
-  username: Pejuan 
-  department: dep2
-  position: Secretaria
-  isGeneralAdmin: false
-  isDepartmentAdmin: false
-
-kelvin:
-  email: kelvin@test.com
-  password: 123456
-  username: kelvin
-  department: dep3
-  position: Contadora
-  isGeneralAdmin: false
-  isDepartmentAdmin: false
-
-hernandez:
-  email: hernandez@test.com
-  password: 123456
-  username: hernandez
-  department: dep3
-  position: Gerente
+user02: 
+  email: usuario2@usuario.com
+  password: null
+  username: UsuarioDos
+  position: Supervisor
+  department: dep1
   isGeneralAdmin: false
   isDepartmentAdmin: true
+
+user03: 
+  email: usuario3@usuario.com
+  password: password3
+  username: usuarioTres
+  position: PO
+  department: dep1
+  isGeneralAdmin: false
+  isDepartmentAdmin: false
+
+user03: 
+  email: usuario3@usuario.com
+  password: password3
+  username: usuarioTres
+  position: null
+  department: dep1
+  isGeneralAdmin: false
+  isDepartmentAdmin: false
+

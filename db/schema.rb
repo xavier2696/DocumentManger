@@ -10,17 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170326212324) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+ActiveRecord::Schema.define(version: 20170806222141) do
 
   create_table "archives", force: :cascade do |t|
     t.integer  "document_id"
     t.string   "archive"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["document_id"], name: "index_archives_on_document_id", using: :btree
+    t.index ["document_id"], name: "index_archives_on_document_id"
   end
 
   create_table "departments", force: :cascade do |t|
@@ -50,11 +47,11 @@ ActiveRecord::Schema.define(version: 20170326212324) do
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
     t.string   "picture"
-    t.index ["creator_id"], name: "index_documents_on_creator_id", using: :btree
-    t.index ["receiverStatus_id"], name: "index_documents_on_receiverStatus_id", using: :btree
-    t.index ["receiver_id"], name: "index_documents_on_receiver_id", using: :btree
-    t.index ["senderStatus_id"], name: "index_documents_on_senderStatus_id", using: :btree
-    t.index ["sender_id"], name: "index_documents_on_sender_id", using: :btree
+    t.index ["creator_id"], name: "index_documents_on_creator_id"
+    t.index ["receiverStatus_id"], name: "index_documents_on_receiverStatus_id"
+    t.index ["receiver_id"], name: "index_documents_on_receiver_id"
+    t.index ["senderStatus_id"], name: "index_documents_on_senderStatus_id"
+    t.index ["sender_id"], name: "index_documents_on_sender_id"
   end
 
   create_table "documents_tags", id: false, force: :cascade do |t|
@@ -67,7 +64,7 @@ ActiveRecord::Schema.define(version: 20170326212324) do
     t.integer  "document_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-    t.index ["document_id"], name: "index_images_on_document_id", using: :btree
+    t.index ["document_id"], name: "index_images_on_document_id"
   end
 
   create_table "statuses", force: :cascade do |t|
@@ -75,7 +72,7 @@ ActiveRecord::Schema.define(version: 20170326212324) do
     t.integer  "department_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
-    t.index ["department_id"], name: "index_statuses_on_department_id", using: :btree
+    t.index ["department_id"], name: "index_statuses_on_department_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -102,20 +99,11 @@ ActiveRecord::Schema.define(version: 20170326212324) do
     t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.index ["department_id"], name: "index_users_on_department_id", using: :btree
-    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.index ["department_id"], name: "index_users_on_department_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "archives", "documents"
-  add_foreign_key "documents", "statuses", column: "receiverStatus_id"
-  add_foreign_key "documents", "statuses", column: "senderStatus_id"
-  add_foreign_key "documents", "users", column: "creator_id"
-  add_foreign_key "documents", "users", column: "receiver_id"
-  add_foreign_key "documents", "users", column: "sender_id"
-  add_foreign_key "images", "documents"
-  add_foreign_key "statuses", "departments"
-  add_foreign_key "users", "departments"
 end

@@ -1,24 +1,29 @@
-# README
+# DocumentManager v0.0.3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+## Instalación y ejecución:
 
-* Ruby version
+* Obtener y posicionarse:
+> **git clone git@github.com:nelbr3n/DocumentManager.git**
 
-* System dependencies
+> **cd DocumentManager**
 
-* Configuration
+* Si se requieren paquetes y gemas:"
+> **./install_packages.bash**
 
-* Database creation
+> **bundle install**
 
-* Database initialization
+* Preparar base de datos y ejecutar servidor:
+> **rake db:setup**
 
-* How to run the test suite
+> **rails s**
 
-* Services (job queues, cache servers, search engines, etc.)
+---
 
-* Deployment instructions
+## Cuentas:
 
-* ...
+* superadmin@test.com / superadmin
+* admin_infor@test.com / admin_infor
+* admin_infra@test.com / admin_infra
+

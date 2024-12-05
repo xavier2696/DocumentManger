@@ -1,9 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  tagName: MyString
+tagnulo:
+  tagName: null
   department_id: 1
 
-two:
-  tagName: MyString
+tagnombre:
+  tagName: "Pasteles"
   department_id: 1
+
+tagrepetido:
+  tagName: "Etiqueta Verde"
+  department_id: 1
+
+tagvacio:
+  tagName: ""
+  department_id: 2
